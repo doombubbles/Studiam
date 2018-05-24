@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class StudiamMenuBar extends JMenuBar{
@@ -19,7 +20,8 @@ public class StudiamMenuBar extends JMenuBar{
                 int result = jFileChooser.showOpenDialog(parent);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File file = jFileChooser.getSelectedFile();
-                    Main.openFile(file);
+                    QuizFile quizFile = new QuizFile(file);
+                    Main.openFile(quizFile);
                 }
 
             }

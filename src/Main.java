@@ -10,8 +10,8 @@ public class Main {
     }
 
 
-    public static void openFile(File file) {
-        EditQuizScreen editQuizScreen = new EditQuizScreen(file);
+    public static void openFile(QuizFile quizFile) {
+        EditQuizScreen editQuizScreen = new EditQuizScreen(quizFile);
         switchScreen(editQuizScreen);
     }
 
@@ -25,6 +25,5 @@ public class Main {
         }
         mainFrame.getCurrentScreen().setVisible(false);
         mainFrame.setCurrentScreen(newScreen);
-        System.out.println(newScreen.isVisible());
     }
 }

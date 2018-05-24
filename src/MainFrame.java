@@ -40,6 +40,6 @@ public class MainFrame extends JFrame {
         setIconImage(new ToolkitImage(new FileImageSource("icon.png")));
         currentScreen = new MainMenuScreen();
         addScreen(currentScreen);
-        setJMenuBar(MenuUtils.getDefaultMenuBar(this));
+        setJMenuBar(new StudiamMenuBar(this));
     }
 }
