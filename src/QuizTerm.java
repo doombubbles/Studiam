@@ -1,10 +1,10 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizTerm {
 
     private String term;
-    private Set<String> alternates = new HashSet<>();
+    private List<String> alternates = new ArrayList<>();
 
     public QuizTerm(String term) {
         this.term = term;
