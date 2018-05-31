@@ -1,9 +1,8 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuizSection extends ArrayList<QuizElement> implements IQuizEntry {
-
-    private List<QuizElement> quizElements = new ArrayList<>();
     private String name;
 
     public QuizSection(String name) {
@@ -12,18 +11,20 @@ public class QuizSection extends ArrayList<QuizElement> implements IQuizEntry {
 
     public QuizSection(String name, List<QuizElement> elements) {
         this.name = name;
-        quizElements = elements;
+        for (QuizElement element : elements) {
+            add(element);
+        }
     }
 
     public QuizSection(String name, QuizElement... elements) {
         this.name = name;
         for (QuizElement element : elements) {
-            quizElements.add(element);
+            add(element);
         }
     }
 
     @Override
     public List<QuizElement> getAll() {
-        return quizElements;
+        return this;
     }
 }

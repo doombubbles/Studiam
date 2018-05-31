@@ -8,6 +8,15 @@ public class QuizElement extends ArrayList<QuizTerm> implements IQuizEntry {
 
     public QuizElement(String dataString) {
         this.dataString = dataString;
+        String[] splitData = dataString.split(", ");
+        for (String s : splitData) {
+            String[] splitAgainData = s.split(" \\| ");
+            QuizTerm term = new QuizTerm(splitAgainData[0]);
+            for (int i = 1; i < splitAgainData.length; i++) {
+                term.addAlternate(splitAgainData[i]);
+            }
+            add(term);
+        }
     }
 
     @Override

@@ -9,8 +9,19 @@ public class StudiamMenuBar extends JMenuBar{
 
     public static final int CTRL = Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask();
 
+    private static JFrame parent;
+
     public StudiamMenuBar(JFrame parent) {
         JMenu fileMenu = new JMenu("File");
+        this.parent = parent;
+
+        fileMenu.add(open());
+        fileMenu.add(save());
+
+        add(fileMenu);
+    }
+
+    private static JMenuItem open() {
         JMenuItem open = new JMenuItem();
         open.setAction(new AbstractAction() {
             @Override
@@ -28,12 +39,10 @@ public class StudiamMenuBar extends JMenuBar{
         });
         open.setAccelerator(KeyStroke.getKeyStroke('O', CTRL));
         open.setText("Open");
+        return open;
+    }
 
-
-        JMenuItem importt = new JMenuItem("Import");
-        importt.setText("Import");
-
-
+    private static JMenuItem save() {
         JMenuItem save = new JMenuItem("Save");
         save.setAction(new AbstractAction() {
             @Override
@@ -43,10 +52,6 @@ public class StudiamMenuBar extends JMenuBar{
         });
         save.setAccelerator(KeyStroke.getKeyStroke('S', CTRL));
         save.setText("Save");
-
-        fileMenu.add(open);
-        fileMenu.add(save);
-        fileMenu.add(importt);
-        add(fileMenu);
+        return save;
     }
 }

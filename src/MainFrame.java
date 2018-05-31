@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
 
     private void init() {
         setTitle("hi");
-        setSize(400, 400);
+        setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         setIconImage(new ToolkitImage(new FileImageSource("icon.png")));

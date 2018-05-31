@@ -14,19 +14,55 @@ public class EditQuizScreen extends Screen {
 
         screenId = "EditQuiz_" + quiz.name;
         setLayout(new BorderLayout());
-        setBackground(Color.MAGENTA);
+
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(Color.LIGHT_GRAY);
+        JPanel middlePanel = new JPanel(new BorderLayout());
         JLabel studiamLabel = new JLabel(quiz.name);
         studiamLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
         topPanel.add(studiamLabel, BorderLayout.WEST);
 
         add(topPanel, BorderLayout.NORTH);
+        add(middlePanel, BorderLayout.CENTER);
 
-        for (QuizElement element : quiz.getAllElements()) {
-            System.out.println("hmm" + element);
+
+
+
+        JViewport viewport = new JViewport();
+        JScrollPane scrollPane = new JScrollPane(viewport);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        middlePanel.add(scrollPane);
+
+
+        viewport.setLayout(new FlowLayout());
+        viewport.add(new JLabel(new ImageIcon("icon.png")));
+        viewport.add(new JLabel(new ImageIcon("icon.png")));
+        viewport.add(new JLabel(new ImageIcon("icon.png")));
+
+        for (IQuizEntry element : quiz) {
+            if (element instanceof QuizSection) {
+                QuizSection section = (QuizSection) element;
+                for (QuizElement quizElement : section) {
+                    for (QuizTerm term : quizElement) {
+                        viewport.add(new GUIEditorQuizTerm(term));
+                    }
+                }
+
+            } else if (element instanceof QuizElement) {
+                QuizElement quizElement = (QuizElement) element;
+                for (QuizTerm term : quizElement) {
+                    viewport.add(new GUIEditorQuizTerm(term));
+                }
+
+            }
+
         }
+
+
+
+
 
 
     }

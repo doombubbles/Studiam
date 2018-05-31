@@ -21,6 +21,10 @@ public class QuizTerm {
         alternates.add(string);
     }
 
+    public List<String> getAlternates() {
+        return alternates;
+    }
+
     @Override
     public String toString() {
         return term;

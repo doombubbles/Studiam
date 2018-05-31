@@ -1,5 +1,3 @@
-import java.io.File;
-
 public class Main {
 
     private static MainFrame mainFrame;

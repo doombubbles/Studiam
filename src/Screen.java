@@ -6,7 +6,7 @@ public class Screen extends JPanel {
     protected String screenId = "";
 
     public Screen() {
-        setPreferredSize(new Dimension(400, 400));
+        setPreferredSize(new Dimension(800, 600));
     }
 
     public String getScreenId() {

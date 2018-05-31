@@ -5,7 +5,7 @@ public class OpenFrame extends JFrame {
 
     public OpenFrame() {
         setTitle("Open...");
-        setSize(400, 400);
+        setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBackground(Color.BLUE);
         setLocationRelativeTo(null);
