@@ -37,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EditQuizScreen.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EditQuizScreen.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/EditQuizScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
+            <state relative-caret-position="255">
+              <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUIEditorQuizTerm.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GUIEditorQuizTerm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizTerm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+            <state relative-caret-position="190">
+              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -183,9 +183,9 @@
         <option value="$PROJECT_DIR$/src/MainMenuScreen.java" />
         <option value="$PROJECT_DIR$/src/GUIEditorQuizElement.java" />
         <option value="$PROJECT_DIR$/src/QuizTerm.java" />
-        <option value="$PROJECT_DIR$/src/EditQuizScreen.java" />
         <option value="$PROJECT_DIR$/src/QuizElement.java" />
         <option value="$PROJECT_DIR$/src/GUIEditorQuizTerm.java" />
+        <option value="$PROJECT_DIR$/src/EditQuizScreen.java" />
       </list>
     </option>
   </component>
@@ -338,6 +338,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26618123" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289941" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -349,7 +350,6 @@
       <window_info anchor="right" id="Commander" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3289941" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -692,16 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EditQuizScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/QuizElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -748,8 +738,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizTerm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+        <state relative-caret-position="190">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EditQuizScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
