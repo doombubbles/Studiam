@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizSection extends ArrayList<QuizElement> implements IQuizEntry {
+
     private String name;
 
     public QuizSection(String name) {
@@ -21,6 +22,10 @@ public class QuizSection extends ArrayList<QuizElement> implements IQuizEntry {
         for (QuizElement element : elements) {
             add(element);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

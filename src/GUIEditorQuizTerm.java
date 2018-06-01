@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -6,18 +7,24 @@ import java.util.List;
 
 public class GUIEditorQuizTerm extends JComboBox {
 
+    private final String NEW = "[New]";
+
     private int index;
 
+
     public GUIEditorQuizTerm(QuizTerm term) {
+        setAlignmentX(LEFT_ALIGNMENT);
         List<String> terms = term.getAlternates();
         terms.add(0, term.toString());
-        terms.add("[Add New Alternative]");
+        terms.add(NEW);
         DefaultComboBoxModel model = new DefaultComboBoxModel(terms.toArray());
         setModel(model);
         setEditable(true);
+        setPreferredSize(new Dimension(75, 20));
+        setMaximumSize(new Dimension(150, 20));
 
         addActionListener(e -> {
-            if (e.getActionCommand().equals("comboBoxChanged") && model.getSelectedItem().equals("[Add New Alternative]")) {
+            if (e.getActionCommand().equals("comboBoxChanged") && model.getSelectedItem().equals(NEW)) {
                 model.insertElementAt("[term]", model.getSize() - 1);
                 setSelectedIndex(model.getSize() - 2);
             }

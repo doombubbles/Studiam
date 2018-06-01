@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class EditQuizScreen extends Screen {
@@ -33,29 +34,29 @@ public class EditQuizScreen extends Screen {
         JScrollPane scrollPane = new JScrollPane(viewport);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        middlePanel.add(scrollPane);
+        viewport.setLayout(new BorderLayout());
 
+        JPanel viewPanel = new JPanel();
+        viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.Y_AXIS));
 
-        viewport.setLayout(new FlowLayout());
-        viewport.add(new JLabel(new ImageIcon("icon.png")));
-        viewport.add(new JLabel(new ImageIcon("icon.png")));
-        viewport.add(new JLabel(new ImageIcon("icon.png")));
 
         for (IQuizEntry element : quiz) {
             if (element instanceof QuizSection) {
                 QuizSection section = (QuizSection) element;
+                JPanel sectionPanel = new JPanel();
+                sectionPanel.setLayout(new BoxLayout(sectionPanel, BoxLayout.Y_AXIS));
+                sectionPanel.setBorder(BorderFactory.createTitledBorder(
+                        BorderFactory.createLineBorder(Color.BLACK), section.getName(),
+                        TitledBorder.LEFT, TitledBorder.TOP, new Font("Times New Roman", Font.BOLD, 25)));
+                sectionPanel.setAlignmentX(LEFT_ALIGNMENT);
+                viewPanel.add(sectionPanel);
                 for (QuizElement quizElement : section) {
-                    for (QuizTerm term : quizElement) {
-                        viewport.add(new GUIEditorQuizTerm(term));
-                    }
+                    sectionPanel.add(new GUIEditorQuizElement(quizElement));
                 }
 
             } else if (element instanceof QuizElement) {
                 QuizElement quizElement = (QuizElement) element;
-                for (QuizTerm term : quizElement) {
-                    viewport.add(new GUIEditorQuizTerm(term));
-                }
-
+                viewPanel.add(new GUIEditorQuizElement(quizElement));
             }
 
         }
@@ -63,6 +64,9 @@ public class EditQuizScreen extends Screen {
 
 
 
+        viewport.add(viewPanel);
+
+        middlePanel.add(scrollPane);
 
 
     }
