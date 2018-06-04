@@ -3,10 +3,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.List;
 
 public class GUIEditorQuizTerm extends JComboBox {
@@ -15,6 +12,7 @@ public class GUIEditorQuizTerm extends JComboBox {
 
     private int index;
     private DefaultComboBoxModel model;
+    private boolean deleted = false;
 
 
     public GUIEditorQuizTerm(QuizTerm term) {
@@ -24,12 +22,27 @@ public class GUIEditorQuizTerm extends JComboBox {
         terms.add(NEW);
         model = new DefaultComboBoxModel<>(terms.toArray());
         setModel(model);
+        setMaximumSize(new Dimension(300, 20));
         setEditable(true);
-        setPreferredSize(new Dimension(75, 20));
-        setMaximumSize(new Dimension(150, 20));
         setEditor(new GUIComboBoxEditor());
         JTextArea textArea = (JTextArea)getEditor().getEditorComponent();
-
+        textArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (model.getSize() == 2 && textArea.getText().isEmpty()) {
+                        delete();
+                    }
+                    e.consume();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
 
         addActionListener(e -> {
             if (e.getActionCommand().equals("comboBoxChanged") && model.getSelectedItem().equals(NEW)) {
@@ -37,18 +50,33 @@ public class GUIEditorQuizTerm extends JComboBox {
                 setSelectedIndex(model.getSize() - 2);
             }
             if (e.getActionCommand().equals("comboBoxEdited")) {
-                String newTerm = (String) model.getSelectedItem();
-                model.removeElementAt(index);
-                if (!newTerm.isEmpty()) {
-                    model.insertElementAt(model.getSelectedItem(), index);
-                }
-                setSelectedIndex(Math.min(index, model.getSize() - 2));
+                updateTerm();
             }
 
             index = getSelectedIndex() > -1 ? getSelectedIndex() : index;
         });
+    }
 
+    public void updateTerm() {
+        String newTerm = (String) model.getSelectedItem();
+        model.removeElementAt(index);
+        if (!newTerm.isEmpty()) {
+            model.insertElementAt(newTerm, index);
+        } else if (model.getSize() < 2 && !deleted) {
+            delete();
+            return;
+        }
+        setSelectedIndex(Math.min(index, model.getSize() - 2));
+        revalidate();
+        repaint();
+    }
 
+    public void delete() {
+        deleted = true;
+        Container parent = getParent();
+        parent.remove(this);
+        parent.revalidate();
+        parent.repaint();
     }
 
     public QuizTerm getQuizTerm() {

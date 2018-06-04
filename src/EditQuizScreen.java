@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.color.ColorSpace;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -74,6 +76,22 @@ public class EditQuizScreen extends Screen {
                 for (QuizElement quizElement : section) {
                     sectionPanel.add(new GUIEditorQuizElement(quizElement));
                 }
+
+                JButton newButton = new JButton();
+                newButton.setText("New");
+                newButton.setPreferredSize(new Dimension(100, 25));
+                newButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        QuizElement element1 = new QuizElement("[term]");
+                        GUIEditorQuizElement newElement = new GUIEditorQuizElement(element1);
+                        sectionPanel.add(newElement, sectionPanel.getComponentCount() - 1);
+                        revalidate();
+                        repaint();
+                    }
+                });
+
+                sectionPanel.add(newButton);
 
             } else if (element instanceof QuizElement) {
                 QuizElement quizElement = (QuizElement) element;
