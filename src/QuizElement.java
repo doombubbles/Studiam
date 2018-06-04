@@ -19,6 +19,22 @@ public class QuizElement extends ArrayList<QuizTerm> implements IQuizEntry {
         }
     }
 
+    public QuizElement() {
+
+    }
+
+    public String convertBack() {
+        String string = "";
+        for (QuizTerm quizTerm : this) {
+            string = string + quizTerm;
+            for (String s : quizTerm.getAlternates()) {
+                string = string + (" | " + s);
+            }
+            string += ", ";
+        }
+        return string.substring(0, string.length() - 2);
+    }
+
     @Override
     public String toString() {
         return dataString;

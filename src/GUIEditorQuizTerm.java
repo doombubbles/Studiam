@@ -1,8 +1,12 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.plaf.basic.BasicComboBoxEditor;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 public class GUIEditorQuizTerm extends JComboBox {
@@ -10,6 +14,7 @@ public class GUIEditorQuizTerm extends JComboBox {
     private final String NEW = "[New]";
 
     private int index;
+    private DefaultComboBoxModel model;
 
 
     public GUIEditorQuizTerm(QuizTerm term) {
@@ -17,11 +22,14 @@ public class GUIEditorQuizTerm extends JComboBox {
         List<String> terms = term.getAlternates();
         terms.add(0, term.toString());
         terms.add(NEW);
-        DefaultComboBoxModel model = new DefaultComboBoxModel(terms.toArray());
+        model = new DefaultComboBoxModel<>(terms.toArray());
         setModel(model);
         setEditable(true);
         setPreferredSize(new Dimension(75, 20));
         setMaximumSize(new Dimension(150, 20));
+        setEditor(new GUIComboBoxEditor());
+        JTextArea textArea = (JTextArea)getEditor().getEditorComponent();
+
 
         addActionListener(e -> {
             if (e.getActionCommand().equals("comboBoxChanged") && model.getSelectedItem().equals(NEW)) {
@@ -41,5 +49,15 @@ public class GUIEditorQuizTerm extends JComboBox {
         });
 
 
+    }
+
+    public QuizTerm getQuizTerm() {
+        QuizTerm quizTerm = new QuizTerm((String) model.getSelectedItem());
+        for (int i = 0; i < model.getSize() - 1; i++) {
+            if (i != getSelectedIndex()) {
+                quizTerm.addAlternate((String) model.getElementAt(i));
+            }
+        }
+        return quizTerm;
     }
 }

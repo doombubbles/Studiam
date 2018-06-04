@@ -11,12 +11,14 @@ public class StudiamMenuBar extends JMenuBar{
 
     private static JFrame parent;
 
-    public StudiamMenuBar(JFrame parent) {
+    public StudiamMenuBar(JFrame parent, Screen screen) {
         JMenu fileMenu = new JMenu("File");
         this.parent = parent;
 
         fileMenu.add(open());
-        fileMenu.add(save());
+        if (screen instanceof EditQuizScreen) {
+            fileMenu.add(save());
+        }
 
         add(fileMenu);
     }
@@ -47,7 +49,10 @@ public class StudiamMenuBar extends JMenuBar{
         save.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Saved!");
+                if (Main.saveFile()) {
+                    JOptionPane.showMessageDialog(null, "Saved!");
+                }
+
             }
         });
         save.setAccelerator(KeyStroke.getKeyStroke('S', CTRL));

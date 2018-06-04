@@ -32,14 +32,18 @@ public class MainFrame extends JFrame {
         this.currentScreen = currentScreen;
     }
 
+    public void updateMenubar() {
+        setJMenuBar(new StudiamMenuBar(this, currentScreen));
+    }
+
     private void init() {
-        setTitle("hi");
+        setTitle("Studiam");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        setIconImage(new ToolkitImage(new FileImageSource("icon.png")));
+        setIconImage(new ToolkitImage(new FileImageSource("s3.png")));
         currentScreen = new MainMenuScreen();
         addScreen(currentScreen);
-        setJMenuBar(new StudiamMenuBar(this));
+        setJMenuBar(new StudiamMenuBar(this, currentScreen));
     }
 }

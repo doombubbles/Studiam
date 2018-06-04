@@ -1,10 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class QuizFile extends File {
+
+    public Quiz quiz;
 
     public QuizFile(String pathname) {
         super(pathname);
@@ -23,7 +27,7 @@ public class QuizFile extends File {
             return null;
         }
 
-        Quiz quiz = new Quiz();
+        quiz = new Quiz();
 
         QuizSection section = null;
 
@@ -66,6 +70,21 @@ public class QuizFile extends File {
         }
 
         return quiz;
+    }
+
+
+    public void reverseInitialize(PrintStream outputStream) {
+        outputStream.println("quizName = " + quiz.name);
+        outputStream.println("quizDex = " + quiz.description);
+        for (IQuizEntry entry : quiz) {
+            if (entry instanceof QuizSection) {
+                QuizSection section = (QuizSection) entry;
+                outputStream.println("quizSection = " + section.getName());
+                for (QuizElement element : section) {
+                    outputStream.println("quizElement = " + element);
+                }
+            }
+        }
     }
 
 
