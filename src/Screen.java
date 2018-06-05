@@ -19,4 +19,14 @@ public class Screen extends JPanel {
             return screenId.equals(((Screen) obj).getScreenId());
         } else return super.equals(obj);
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Dimension size = getRootPane().getSize();
+        g.drawImage(new ImageIcon("background1.png").getImage(),0,0, size.width, size.height, this);
+
+    }
+
+
 }

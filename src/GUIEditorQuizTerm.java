@@ -17,6 +17,7 @@ public class GUIEditorQuizTerm extends JComboBox {
 
     public GUIEditorQuizTerm(QuizTerm term) {
         setAlignmentX(LEFT_ALIGNMENT);
+        setForeground(Color.BLACK);
         List<String> terms = term.getAlternates();
         terms.add(0, term.toString());
         terms.add(NEW);
@@ -24,7 +25,8 @@ public class GUIEditorQuizTerm extends JComboBox {
         setModel(model);
         setMaximumSize(new Dimension(300, 20));
         setEditable(true);
-        setEditor(new GUIComboBoxEditor());
+        GUIComboBoxEditor editor = new GUIComboBoxEditor();
+        setEditor(editor);
         JTextArea textArea = (JTextArea)getEditor().getEditorComponent();
         textArea.addKeyListener(new KeyListener() {
             @Override

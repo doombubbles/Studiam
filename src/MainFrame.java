@@ -2,6 +2,8 @@ import sun.awt.image.FileImageSource;
 import sun.awt.image.ToolkitImage;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
@@ -13,6 +15,25 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         screens = new ArrayList<>();
         init();
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    revalidate();
+                    repaint();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
     }
 
     public ArrayList<Screen> getScreens() {

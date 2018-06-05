@@ -19,6 +19,7 @@ public class EditQuizScreen extends Screen {
 
     public EditQuizScreen(QuizFile file) {
         this.quizFile = file;
+        setBackground(Main.CLEAR);
 
         quiz = quizFile.initialize();
 
@@ -27,22 +28,29 @@ public class EditQuizScreen extends Screen {
 
 
         JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(Color.LIGHT_GRAY);
+        topPanel.setBackground(new Color(200, 200, 200, 100));
         JPanel middlePanel = new JPanel(new BorderLayout());
+        middlePanel.setBackground(Main.CLEAR);
 
 
         title = new JTextArea(quiz.name);
         title.setFont(new Font("Times New Roman", Font.BOLD, 30));
         title.setSelectionColor(Main.LESS_PURPLE);
         title.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 2, 0, 5)));
+        title.setForeground(Color.BLACK);
 
         desc = new JTextArea(quiz.description);
-        desc.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        desc.setFont(new Font("Times New Roman", Font.BOLD, 15));
         desc.setSelectionColor(Main.LESS_PURPLE);
-        desc.setBackground(Color.LIGHT_GRAY);
+        desc.setBackground(new Color(200, 200, 200));
+        desc.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+        desc.setForeground(Color.BLACK);
 
         JButton startQuizButton = new JButton();
+        startQuizButton.setBackground(Main.LESS_PURPLE);
+        startQuizButton.setBorder(BorderFactory.createRaisedBevelBorder());
         startQuizButton.setText("Start the quiz!");
+        startQuizButton.setForeground(Color.BLACK);
         startQuizButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
 
         topPanel.add(title, BorderLayout.WEST);
@@ -54,14 +62,16 @@ public class EditQuizScreen extends Screen {
 
         JViewport viewport = new JViewport();
         JScrollPane scrollPane = new JScrollPane(viewport);
+        scrollPane.setBackground(Main.CLEAR);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         viewport.setLayout(new BorderLayout());
+        viewport.setBackground(Main.CLEAR);
 
         viewPanel = new JPanel();
         viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.Y_AXIS));
-
+        viewPanel.setBackground(Main.CLEAR);
 
         for (IQuizEntry element : quiz) {
             if (element instanceof QuizSection) {
@@ -87,12 +97,14 @@ public class EditQuizScreen extends Screen {
                 GUIEditorQuizElement newElement = new GUIEditorQuizElement(element1);
 
                 QuizSection section = new QuizSection("name", Arrays.asList(element1));
+                JPanel quizSectionPanel = quizSectionPanel(section);
 
-                viewPanel.add(newElement, viewPanel.getComponentCount() - 1);
+                viewPanel.add(quizSectionPanel, viewPanel.getComponentCount() - 1);
                 revalidate();
                 repaint();
             }
         });
+        viewPanel.add(newButton2);
 
         viewport.add(viewPanel);
 
@@ -103,9 +115,12 @@ public class EditQuizScreen extends Screen {
         JPanel sectionPanel = new JPanel();
         sectionPanel.setName(section.getName());
         sectionPanel.setLayout(new BoxLayout(sectionPanel, BoxLayout.Y_AXIS));
+        sectionPanel.setBackground(new Color(200, 200, 200, 100));
         sectionPanel.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(Color.BLACK), section.getName(),
-                TitledBorder.LEFT, TitledBorder.TOP, new Font("Times New Roman", Font.BOLD, 25)));
+                TitledBorder.LEFT, TitledBorder.TOP, new Font("Times New Roman", Font.BOLD, 25), Color.BLACK));
+
+
         sectionPanel.setAlignmentX(LEFT_ALIGNMENT);
         for (QuizElement quizElement : section) {
             sectionPanel.add(new GUIEditorQuizElement(quizElement));

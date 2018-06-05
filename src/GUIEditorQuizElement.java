@@ -8,6 +8,8 @@ public class GUIEditorQuizElement extends JPanel {
 
     public GUIEditorQuizElement(QuizElement element) {
         setPreferredSize(new Dimension(100, 40));
+        setBackground(new Color(200, 200, 200, 200));
+        setForeground(Color.BLACK);
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(0, 0, 10, 0),
                 BorderFactory.createLineBorder(Main.PURPLE)));

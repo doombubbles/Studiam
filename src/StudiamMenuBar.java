@@ -28,14 +28,7 @@ public class StudiamMenuBar extends JMenuBar{
         open.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser jFileChooser = new JFileChooser();
-                jFileChooser.setFileFilter(new FileNameExtensionFilter("Studiam Quiz Files", "studiam"));
-                int result = jFileChooser.showOpenDialog(parent);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File file = jFileChooser.getSelectedFile();
-                    QuizFile quizFile = new QuizFile(file);
-                    Main.openFile(quizFile);
-                }
+                Main.openFile();
 
             }
         });
