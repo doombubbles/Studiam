@@ -37,15 +37,14 @@ public class Main {
             try {
                 File recentFile = new File(RECENT);
                 Scanner scanner = new Scanner(recentFile);
-                PrintStream printStream = new PrintStream(new FileOutputStream(recentFile, false));
                 List<String> list = new ArrayList<>();
                 while (scanner.hasNextLine()) {
                     list.add(scanner.nextLine());
                 }
                 list.removeIf(s -> s.equals(file.getPath()));
+                PrintStream printStream = new PrintStream(new FileOutputStream(recentFile, false));
                 printStream.println(quizFile.getPath());
                 list.forEach(printStream::println);
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -59,12 +58,12 @@ public class Main {
     }
 
     public static void switchScreen(Screen newScreen) {
-        if (!mainFrame.getScreens().contains(newScreen)) {
-            mainFrame.addScreen(newScreen);
-        }
-        mainFrame.getCurrentScreen().setVisible(false);
+        mainFrame.remove(mainFrame.getCurrentScreen());
         mainFrame.setCurrentScreen(newScreen);
+        mainFrame.add(newScreen);
         mainFrame.updateMenubar();
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
     public static boolean saveFile() {

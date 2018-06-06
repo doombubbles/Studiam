@@ -7,6 +7,7 @@ import java.util.List;
 public class GUIEditorQuizElement extends JPanel {
 
     public GUIEditorQuizElement(QuizElement element) {
+        setOpaque(false);
         setPreferredSize(new Dimension(100, 40));
         setBackground(new Color(200, 200, 200, 200));
         setForeground(Color.BLACK);
@@ -81,5 +82,12 @@ public class GUIEditorQuizElement extends JPanel {
             element.add(quizTerm.getQuizTerm());
         }
         return element;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        g.setColor( getBackground() );
+        g.fillRect(0, 0, getWidth(), getHeight());
+        super.paintComponent(g);
     }
 }

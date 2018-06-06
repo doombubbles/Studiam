@@ -27,9 +27,26 @@ public class EditQuizScreen extends Screen {
         setLayout(new BorderLayout());
 
 
-        JPanel topPanel = new JPanel(new BorderLayout());
+
+        JPanel topPanel = new JPanel(new BorderLayout()) {
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        topPanel.setOpaque(false);
         topPanel.setBackground(new Color(200, 200, 200, 100));
-        JPanel middlePanel = new JPanel(new BorderLayout());
+        JPanel middlePanel = new JPanel(new BorderLayout()) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        middlePanel.setOpaque(false);
         middlePanel.setBackground(Main.CLEAR);
 
 
@@ -60,16 +77,42 @@ public class EditQuizScreen extends Screen {
         add(middlePanel, BorderLayout.CENTER);
 
 
-        JViewport viewport = new JViewport();
-        JScrollPane scrollPane = new JScrollPane(viewport);
+        JViewport viewport = new JViewport() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        viewport.setOpaque(false);
+        viewport.setBackground(Main.CLEAR);
+
+        viewport.setLayout(new BorderLayout());
+        JScrollPane scrollPane = new JScrollPane(viewport) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
         scrollPane.setBackground(Main.CLEAR);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        viewport.setLayout(new BorderLayout());
-        viewport.setBackground(Main.CLEAR);
 
-        viewPanel = new JPanel();
+        viewPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        viewPanel.setOpaque(false);
         viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.Y_AXIS));
         viewPanel.setBackground(Main.CLEAR);
 
@@ -112,7 +155,15 @@ public class EditQuizScreen extends Screen {
     }
 
     public JPanel quizSectionPanel(QuizSection section) {
-        JPanel sectionPanel = new JPanel();
+        JPanel sectionPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        sectionPanel.setOpaque(false);
         sectionPanel.setName(section.getName());
         sectionPanel.setLayout(new BoxLayout(sectionPanel, BoxLayout.Y_AXIS));
         sectionPanel.setBackground(new Color(200, 200, 200, 100));

@@ -8,45 +8,35 @@ import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
 
-    private ArrayList<Screen> screens;
-
     private Screen currentScreen;
 
     public MainFrame() {
-        screens = new ArrayList<>();
         init();
+        setFocusable(true);
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    revalidate();
-                    repaint();
-                }
             }
-
             @Override
             public void keyPressed(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (Main.getMainFrame().getCurrentScreen() instanceof EditQuizScreen) {
+                        int hmm = JOptionPane.showConfirmDialog(null,
+                                "Are you sure you want to go back to the main menu?", "Warning", JOptionPane.YES_NO_OPTION);
+                        if (hmm == JOptionPane.OK_OPTION) {
+                            Main.switchScreen(new MainMenuScreen());
+                        }
+                    }
+                }
             }
-
             @Override
             public void keyReleased(KeyEvent e) {
-
             }
         });
     }
 
-    public ArrayList<Screen> getScreens() {
-        return screens;
-    }
-
     public Screen getCurrentScreen() {
         return currentScreen;
-    }
-
-    public void addScreen(Screen newScreen) {
-        add(newScreen);
-        screens.add(newScreen);
     }
 
     public void setCurrentScreen(Screen currentScreen) {
@@ -64,7 +54,7 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ToolkitImage(new FileImageSource("s3.png")));
         currentScreen = new MainMenuScreen();
-        addScreen(currentScreen);
+        add(currentScreen);
         setJMenuBar(new StudiamMenuBar(this, currentScreen));
     }
 }

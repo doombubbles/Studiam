@@ -15,7 +15,15 @@ public class MainMenuScreen extends Screen {
         screenId = "MainMenu";
         setLayout(new BorderLayout());
 
-        JPanel mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel() {
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        mainPanel.setOpaque(false);
         mainPanel.setBackground(new Color(0, 0,0, 0));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         add(new JLabel(new ImageIcon("screenshot.png")), BorderLayout.NORTH);
@@ -76,9 +84,17 @@ public class MainMenuScreen extends Screen {
     }
 
     public JPanel recentFiles() {
-        JPanel recentFiles = new JPanel();
+        JPanel recentFiles = new JPanel() {
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        recentFiles.setOpaque(false);
         recentFiles.setBackground(new Color(0,0,0,0));
-        recentFiles.setLayout(new BorderLayout());
+        recentFiles.setLayout(new BoxLayout(recentFiles, BoxLayout.Y_AXIS));
         recentFiles.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(Color.BLACK), "Recent Files", TitledBorder.TOP, TitledBorder.CENTER,
                 new Font("Times New Roman", Font.BOLD, 25), Color.BLACK));
@@ -96,12 +112,14 @@ public class MainMenuScreen extends Screen {
             String line = input.nextLine();
             JButton fileButton = new JButton();
             fileButton.setBackground(Main.LESS_PURPLE);
-            fileButton.setPreferredSize(new Dimension(200, 20));
             fileButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
             fileButton.setForeground(Color.BLACK);
             fileButton.setBorder(BorderFactory.createRaisedBevelBorder());
             fileButton.setText(line);
-            recentFiles.add(fileButton, BorderLayout.CENTER);
+            fileButton.setAlignmentX(CENTER_ALIGNMENT);
+            fileButton.setAlignmentY(BOTTOM_ALIGNMENT);
+            fileButton.setMaximumSize(new Dimension(2000, 25));
+            recentFiles.add(fileButton);
             i++;
         }
 
