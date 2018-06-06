@@ -28,8 +28,7 @@ public class StudiamMenuBar extends JMenuBar{
         open.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.openFile();
-
+                Main.chooseOpenFile();
             }
         });
         open.setAccelerator(KeyStroke.getKeyStroke('O', CTRL));

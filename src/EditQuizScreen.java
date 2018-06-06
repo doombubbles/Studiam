@@ -119,7 +119,7 @@ public class EditQuizScreen extends Screen {
         for (IQuizEntry element : quiz) {
             if (element instanceof QuizSection) {
                 QuizSection section = (QuizSection) element;
-                JPanel sectionPanel = quizSectionPanel(section);
+                JPanel sectionPanel = new GUIEditorQuizSection(section);
                 viewPanel.add(sectionPanel);
 
 
@@ -140,7 +140,7 @@ public class EditQuizScreen extends Screen {
                 GUIEditorQuizElement newElement = new GUIEditorQuizElement(element1);
 
                 QuizSection section = new QuizSection("name", Arrays.asList(element1));
-                JPanel quizSectionPanel = quizSectionPanel(section);
+                JPanel quizSectionPanel = new GUIEditorQuizSection(section);
 
                 viewPanel.add(quizSectionPanel, viewPanel.getComponentCount() - 1);
                 revalidate();
@@ -152,47 +152,6 @@ public class EditQuizScreen extends Screen {
         viewport.add(viewPanel);
 
         middlePanel.add(scrollPane);
-    }
-
-    public JPanel quizSectionPanel(QuizSection section) {
-        JPanel sectionPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.setColor( getBackground() );
-                g.fillRect(0, 0, getWidth(), getHeight());
-                super.paintComponent(g);
-            }
-        };
-        sectionPanel.setOpaque(false);
-        sectionPanel.setName(section.getName());
-        sectionPanel.setLayout(new BoxLayout(sectionPanel, BoxLayout.Y_AXIS));
-        sectionPanel.setBackground(new Color(200, 200, 200, 100));
-        sectionPanel.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(Color.BLACK), section.getName(),
-                TitledBorder.LEFT, TitledBorder.TOP, new Font("Times New Roman", Font.BOLD, 25), Color.BLACK));
-
-
-        sectionPanel.setAlignmentX(LEFT_ALIGNMENT);
-        for (QuizElement quizElement : section) {
-            sectionPanel.add(new GUIEditorQuizElement(quizElement));
-        }
-        JButton newButton = new JButton();
-        newButton.setText("New");
-        newButton.setPreferredSize(new Dimension(100, 25));
-        newButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                QuizElement element1 = new QuizElement("[term]");
-                GUIEditorQuizElement newElement = new GUIEditorQuizElement(element1);
-                sectionPanel.add(newElement, sectionPanel.getComponentCount() - 1);
-                revalidate();
-                repaint();
-            }
-        });
-
-        sectionPanel.add(newButton);
-
-        return sectionPanel;
     }
 
 

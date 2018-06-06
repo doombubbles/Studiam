@@ -66,7 +66,7 @@ public class MainMenuScreen extends Screen {
         openButton.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.openFile();
+                Main.chooseOpenFile();
             }
         });
         setButtonDefaults(openButton);
@@ -111,6 +111,12 @@ public class MainMenuScreen extends Screen {
         while (input.hasNextLine() && i < 5) {
             String line = input.nextLine();
             JButton fileButton = new JButton();
+            fileButton.setAction(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Main.openFile(new File(line));
+                }
+            });
             fileButton.setBackground(Main.LESS_PURPLE);
             fileButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
             fileButton.setForeground(Color.BLACK);

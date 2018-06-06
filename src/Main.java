@@ -23,34 +23,36 @@ public class Main {
         mainFrame.setVisible(true);
     }
 
-
-    public static void openFile() {
+    public static void chooseOpenFile() {
         JFileChooser jFileChooser = new JFileChooser();
         jFileChooser.setFileFilter(new FileNameExtensionFilter("Studiam Quiz Files", "studiam"));
         int result = jFileChooser.showOpenDialog(mainFrame);
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = jFileChooser.getSelectedFile();
-            QuizFile quizFile = new QuizFile(file);
-            EditQuizScreen editQuizScreen = new EditQuizScreen(quizFile);
-            switchScreen(editQuizScreen);
-
-            try {
-                File recentFile = new File(RECENT);
-                Scanner scanner = new Scanner(recentFile);
-                List<String> list = new ArrayList<>();
-                while (scanner.hasNextLine()) {
-                    list.add(scanner.nextLine());
-                }
-                list.removeIf(s -> s.equals(file.getPath()));
-                PrintStream printStream = new PrintStream(new FileOutputStream(recentFile, false));
-                printStream.println(quizFile.getPath());
-                list.forEach(printStream::println);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            openFile(file);
         }
+    }
 
 
+    public static void openFile(File file) {
+        QuizFile quizFile = new QuizFile(file);
+        EditQuizScreen editQuizScreen = new EditQuizScreen(quizFile);
+        switchScreen(editQuizScreen);
+
+        try {
+            File recentFile = new File(RECENT);
+            Scanner scanner = new Scanner(recentFile);
+            List<String> list = new ArrayList<>();
+            while (scanner.hasNextLine()) {
+                list.add(scanner.nextLine());
+            }
+            list.removeIf(s -> s.equals(file.getPath()));
+            PrintStream printStream = new PrintStream(new FileOutputStream(recentFile, false));
+            printStream.println(quizFile.getPath());
+            list.forEach(printStream::println);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static MainFrame getMainFrame() {
