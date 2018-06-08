@@ -12,7 +12,7 @@ public class GUIEditorQuizElement extends JPanel {
         setBackground(new Color(200, 200, 200, 200));
         setForeground(Color.BLACK);
         setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(0, 0, 10, 0),
+                BorderFactory.createEmptyBorder(5, 0, 5, 0),
                 BorderFactory.createLineBorder(Main.PURPLE)));
 
         for (QuizTerm term : element) {
@@ -56,6 +56,10 @@ public class GUIEditorQuizElement extends JPanel {
     public void delete() {
         Container parent = getParent();
         parent.remove(this);
+        if (parent instanceof GUIEditorQuizSection) {
+            GUIEditorQuizSection quizSection = (GUIEditorQuizSection) parent;
+            quizSection.updateBorder();
+        }
         parent.revalidate();
         parent.repaint();
     }

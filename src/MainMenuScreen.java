@@ -26,7 +26,7 @@ public class MainMenuScreen extends Screen {
         mainPanel.setOpaque(false);
         mainPanel.setBackground(new Color(0, 0,0, 0));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        add(new JLabel(new ImageIcon("screenshot.png")), BorderLayout.NORTH);
+        add(new JLabel(new ImageIcon("img/screenshot.png")), BorderLayout.NORTH);
 
         mainPanel.add(newButton());
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));

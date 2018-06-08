@@ -52,7 +52,7 @@ public class MainFrame extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        setIconImage(new ToolkitImage(new FileImageSource("s3.png")));
+        setIconImage(new ToolkitImage(new FileImageSource("img/s3.png")));
         currentScreen = new MainMenuScreen();
         add(currentScreen);
         setJMenuBar(new StudiamMenuBar(this, currentScreen));

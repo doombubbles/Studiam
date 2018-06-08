@@ -53,7 +53,8 @@ public class EditQuizScreen extends Screen {
         title = new JTextArea(quiz.name);
         title.setFont(new Font("Times New Roman", Font.BOLD, 30));
         title.setSelectionColor(Main.LESS_PURPLE);
-        title.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 2, 0, 5)));
+        title.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLoweredBevelBorder(), BorderFactory.createEmptyBorder(0, 2, 0, 5)));
+
         title.setForeground(Color.BLACK);
 
         desc = new JTextArea(quiz.description);
@@ -101,7 +102,7 @@ public class EditQuizScreen extends Screen {
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBackground(Main.CLEAR);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         viewPanel = new JPanel() {
