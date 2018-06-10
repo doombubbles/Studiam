@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,6 +23,38 @@ public class Main {
     public static void main(String[] args){
         mainFrame = new MainFrame();
         mainFrame.setVisible(true);
+    }
+
+    public static KeyListener mainKeyListener() {
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (Main.getMainFrame().getCurrentScreen() instanceof EditQuizScreen) {
+                        int hmm = JOptionPane.showConfirmDialog(null,
+                                "Are you sure you want to go back to the main menu?", "Confirm", JOptionPane.YES_NO_OPTION);
+                        if (hmm == JOptionPane.OK_OPTION) {
+                            Main.switchScreen(new MainMenuScreen());
+                        }
+                    }
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ALT) {
+                    mainFrame.revalidate();
+                    mainFrame.pack();
+                    mainFrame.repaint();
+                    System.out.println("packed");
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        };
+        return keyListener;
     }
 
     public static void chooseOpenFile() {

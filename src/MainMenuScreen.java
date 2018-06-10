@@ -43,57 +43,45 @@ public class MainMenuScreen extends Screen {
         }
     }
 
-    public void setButtonDefaults(JButton jButton) {
-        jButton.setBackground(Main.LESS_PURPLE);
-        jButton.setPreferredSize(new Dimension(200, 35));
-        jButton.setFont(new Font("Times New Roman", Font.BOLD, 35));
-        jButton.setForeground(Color.BLACK);
-        jButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        jButton.setAlignmentX(CENTER_ALIGNMENT);
-    }
-
 
     public JButton newButton() {
-        JButton newButton = new JButton();
-        setButtonDefaults(newButton);
+        JButton newButton = StudiamFactory.newStudiamButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         newButton.setText("New...");
         newButton.setToolTipText("Create a new quiz file from scratch");
         return newButton;
     }
 
     public JButton openButton() {
-        JButton openButton = new JButton();
-        openButton.setAction(new AbstractAction() {
+        JButton openButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.chooseOpenFile();
             }
         });
-        setButtonDefaults(openButton);
         openButton.setText("Open...");
         openButton.setToolTipText("Open a .studiam quiz file");
         return openButton;
     }
 
     public JButton importButton() {
-        JButton importButton = new JButton();
-        setButtonDefaults(importButton);
+        JButton importButton = StudiamFactory.newStudiamButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         importButton.setText("Import...");
         importButton.setToolTipText("Import from quizlet or some shit idk");
         return importButton;
     }
 
     public JPanel recentFiles() {
-        JPanel recentFiles = new JPanel() {
-            protected void paintComponent(Graphics g)
-            {
-                g.setColor( getBackground() );
-                g.fillRect(0, 0, getWidth(), getHeight());
-                super.paintComponent(g);
-            }
-        };
-        recentFiles.setOpaque(false);
-        recentFiles.setBackground(new Color(0,0,0,0));
+        JPanel recentFiles = StudiamFactory.newTransparentPanel();
         recentFiles.setLayout(new BoxLayout(recentFiles, BoxLayout.Y_AXIS));
         recentFiles.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(Color.BLACK), "Recent Files", TitledBorder.TOP, TitledBorder.CENTER,

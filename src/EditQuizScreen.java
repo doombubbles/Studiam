@@ -28,41 +28,21 @@ public class EditQuizScreen extends Screen {
 
 
 
-        JPanel topPanel = new JPanel(new BorderLayout()) {
-            protected void paintComponent(Graphics g)
-            {
-                g.setColor( getBackground() );
-                g.fillRect(0, 0, getWidth(), getHeight());
-                super.paintComponent(g);
-            }
-        };
-        topPanel.setOpaque(false);
+        JPanel topPanel = StudiamFactory.newTransparentPanel(new BorderLayout());
         topPanel.setBackground(new Color(200, 200, 200, 100));
-        JPanel middlePanel = new JPanel(new BorderLayout()) {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.setColor( getBackground() );
-                g.fillRect(0, 0, getWidth(), getHeight());
-                super.paintComponent(g);
-            }
-        };
-        middlePanel.setOpaque(false);
-        middlePanel.setBackground(Main.CLEAR);
+        add(topPanel, BorderLayout.NORTH);
+        JPanel middlePanel = StudiamFactory.newTransparentPanel(new BorderLayout());
+        add(middlePanel, BorderLayout.CENTER);
 
+        title = StudiamFactory.newStudiamTextArea(quiz.name, 30, BorderFactory.createCompoundBorder(
+                BorderFactory.createLoweredBevelBorder(), //outside
+                BorderFactory.createEmptyBorder(0, 2, 0, 5))); //inside
+        topPanel.add(title, BorderLayout.WEST);
 
-        title = new JTextArea(quiz.name);
-        title.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        title.setSelectionColor(Main.LESS_PURPLE);
-        title.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLoweredBevelBorder(), BorderFactory.createEmptyBorder(0, 2, 0, 5)));
-
-        title.setForeground(Color.BLACK);
-
-        desc = new JTextArea(quiz.description);
-        desc.setFont(new Font("Times New Roman", Font.BOLD, 15));
-        desc.setSelectionColor(Main.LESS_PURPLE);
+        desc = StudiamFactory.newStudiamTextArea(quiz.description, 15,
+                BorderFactory.createEmptyBorder(0,5,0,0));
         desc.setBackground(new Color(200, 200, 200));
-        desc.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
-        desc.setForeground(Color.BLACK);
+        topPanel.add(desc, BorderLayout.SOUTH);
 
         JButton startQuizButton = new JButton();
         startQuizButton.setBackground(Main.LESS_PURPLE);
@@ -70,12 +50,7 @@ public class EditQuizScreen extends Screen {
         startQuizButton.setText("Start the quiz!");
         startQuizButton.setForeground(Color.BLACK);
         startQuizButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
-
-        topPanel.add(title, BorderLayout.WEST);
-        topPanel.add(desc, BorderLayout.SOUTH);
         topPanel.add(startQuizButton, BorderLayout.EAST);
-        add(topPanel, BorderLayout.NORTH);
-        add(middlePanel, BorderLayout.CENTER);
 
 
         JViewport viewport = new JViewport() {
@@ -89,7 +64,6 @@ public class EditQuizScreen extends Screen {
         viewport.setOpaque(false);
         viewport.setBackground(Main.CLEAR);
 
-        viewport.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(viewport) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -105,17 +79,8 @@ public class EditQuizScreen extends Screen {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
-        viewPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.setColor( getBackground() );
-                g.fillRect(0, 0, getWidth(), getHeight());
-                super.paintComponent(g);
-            }
-        };
-        viewPanel.setOpaque(false);
+        viewPanel = StudiamFactory.newTransparentPanel();
         viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.Y_AXIS));
-        viewPanel.setBackground(Main.CLEAR);
 
         for (IQuizEntry element : quiz) {
             if (element instanceof QuizSection) {

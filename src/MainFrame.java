@@ -13,26 +13,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         init();
         setFocusable(true);
-        addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (Main.getMainFrame().getCurrentScreen() instanceof EditQuizScreen) {
-                        int hmm = JOptionPane.showConfirmDialog(null,
-                                "Are you sure you want to go back to the main menu?", "Confirm", JOptionPane.YES_NO_OPTION);
-                        if (hmm == JOptionPane.OK_OPTION) {
-                            Main.switchScreen(new MainMenuScreen());
-                        }
-                    }
-                }
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
+        addKeyListener(Main.mainKeyListener());
     }
 
     public Screen getCurrentScreen() {

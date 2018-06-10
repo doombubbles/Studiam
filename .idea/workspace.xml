@@ -7,21 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="555f2cfa-2358-4a68-9e05-c818255847bd" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/StudiamFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/background1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/background1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recent" beforeDir="false" afterPath="$PROJECT_DIR$/recent" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/s2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s3.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/s3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshot.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/screenshot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EditQuizScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EditQuizScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EditableTitledBorder.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIEditorQuizElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIEditorQuizElement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIEditorQuizSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIEditorQuizSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIEditorQuizTerm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIEditorQuizTerm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screen.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,20 +31,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MainFrame.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+            <state relative-caret-position="524">
+              <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainMenuScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MainMenuScreen.java">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+            <state relative-caret-position="510">
+              <caret line="36" column="45" lean-forward="true" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -57,8 +55,39 @@
       <file leaf-file-name="GUIComboBoxEditor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIComboBoxEditor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="53" />
+            <state relative-caret-position="153">
+              <caret line="15" column="69" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenuScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MainMenuScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+              <folding>
+                <element signature="e#480#733#0" expanded="true" />
+                <element signature="e#732#733#0" expanded="true" />
+                <element signature="e#1962#2126#0" expanded="true" />
+                <element signature="e#2125#2126#0" expanded="true" />
+                <element signature="e#3785#3977#0" expanded="true" />
+                <element signature="e#3976#3977#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudiamFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StudiamFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="935">
+              <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#177#430#0" expanded="true" />
+                <element signature="e#429#430#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,10 +95,32 @@
       <file leaf-file-name="EditQuizScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EditQuizScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="994">
-              <caret line="73" column="25" lean-forward="true" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+            <state relative-caret-position="498">
+              <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIEditorQuizTerm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizTerm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIEditorQuizElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizElement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="81" column="8" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+              <folding>
+                <element signature="e#939#1190#0" expanded="true" />
+                <element signature="e#1189#1190#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,35 +129,11 @@
       <file leaf-file-name="GUIEditorQuizSection.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizSection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="28" column="98" selection-start-line="28" selection-start-column="98" selection-end-line="28" selection-end-column="98" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GUIEditorQuizElement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizElement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Screen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Screen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractBorder.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/border/AbstractBorder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+            <state relative-caret-position="493">
+              <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,9 +150,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Integer</find>
-      <find>syste</find>
-      <find>hashset</find>
       <find>print</find>
       <find>studiaml</find>
       <find>selectionc</find>
@@ -138,18 +162,24 @@
       <find>openframe</find>
       <find>title</find>
       <find>guicomb</find>
-      <find>new Color(0, 0, 0, 0);</find>
+      <find />
       <find>Color(0,0,0,0);</find>
       <find>panel</find>
-      <find>new JPanel</find>
-      <find>new jpanel</find>
+      <find />
+      <find />
       <find>toppanel</find>
-      <find>clear</find>
       <find>warning</find>
       <find>TitledBorder</find>
       <find>png</find>
       <find>label</find>
       <find>JTextArea</find>
+      <find>revalid</find>
+      <find>esc</find>
+      <find>.add</find>
+      <find>clear</find>
+      <find>println</find>
+      <find>layout</find>
+      <find>borderlayou</find>
     </findStrings>
     <replaceStrings>
       <replace>EditableTitledBorder</replace>
@@ -174,16 +204,17 @@
         <option value="$PROJECT_DIR$/src/QuizFile.java" />
         <option value="$PROJECT_DIR$/src/QuizElement.java" />
         <option value="$PROJECT_DIR$/src/GUIComboBoxEditor.java" />
-        <option value="$PROJECT_DIR$/src/GUIEditorQuizTerm.java" />
         <option value="$PROJECT_DIR$/src/JPanelTransparent.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/StudiamMenuBar.java" />
         <option value="$PROJECT_DIR$/src/SpecialBorder.java" />
         <option value="$PROJECT_DIR$/src/EditableTitleBorder.java" />
         <option value="$PROJECT_DIR$/src/Screen.java" />
-        <option value="$PROJECT_DIR$/src/MainMenuScreen.java" />
-        <option value="$PROJECT_DIR$/src/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/EditableTitledBorder.java" />
+        <option value="$PROJECT_DIR$/src/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/MainMenuScreen.java" />
+        <option value="$PROJECT_DIR$/src/StudiamFactory.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/GUIEditorQuizTerm.java" />
         <option value="$PROJECT_DIR$/src/EditQuizScreen.java" />
         <option value="$PROJECT_DIR$/src/GUIEditorQuizElement.java" />
         <option value="$PROJECT_DIR$/src/GUIEditorQuizSection.java" />
@@ -199,8 +230,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -210,6 +241,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -226,7 +258,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
@@ -333,43 +364,69 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="1" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3289941" />
-      <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.32928804" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31360948" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3289941" />
+      <window_info anchor="right" id="Mongo Explorer" order="6" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19174758" />
+      <window_info anchor="bottom" id="Statistic" weight="0.59866965" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39881656" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info x="575" y="82" width="884" height="902" id="simpleUML" order="2" type="FLOATING" visible="true" weight="0.47121534" />
-      <window_info anchor="right" id="Mongo Explorer" order="6" />
-      <window_info anchor="right" x="1920" y="22" width="1920" height="1054" id="UML design tool window" order="10" sideWeight="0.50110865" side_tool="true" type="WINDOWED" weight="0.32995737" />
-      <window_info anchor="right" id="Commander" order="7" weight="0.4" />
-      <window_info active="true" anchor="right" id="PlantUML" order="5" sideWeight="0.49889135" visible="true" weight="0.32995737" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="12" side_tool="true" weight="0.32995737" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991131" />
       <window_info anchor="right" id="Code Iris" order="0" weight="0.47654584" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3292683" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="12" side_tool="true" weight="0.32995737" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.11751663" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18230277" />
+      <window_info anchor="bottom" id="FRC" order="10" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32815966" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Statistic" order="9" weight="0.59866965" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info active="true" anchor="right" id="PlantUML" order="5" sideWeight="0.49889135" visible="true" weight="0.32995737" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="7" weight="0.4" />
       <window_info anchor="bottom" id="FRC" order="10" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="12" side_tool="true" weight="0.32995737" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3289941" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32928804" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39881656" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="11" weight="0.25" />
-      <window_info anchor="bottom" id="Statistic" order="9" weight="0.59866965" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19174758" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info x="575" y="82" width="884" height="902" id="simpleUML" order="2" type="FLOATING" visible="true" weight="0.47121534" />
+      <window_info anchor="right" id="Code Iris" order="0" weight="0.47654584" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32815966" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31360948" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3289941" />
+      <window_info anchor="right" id="Mongo Explorer" order="6" />
+      <window_info anchor="right" id="Palette" order="1" />
+      <window_info anchor="right" x="1920" y="22" width="1920" height="1054" id="UML design tool window" order="10" sideWeight="0.50110865" side_tool="true" type="WINDOWED" weight="0.32995737" />
+      <window_info id="Designer" order="3" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -384,21 +441,22 @@
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url />
+          <line>50</line>
+          <properties class="GUIEditorQuizSection" method="updateVisuals">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="34" />
+      <option name="time" value="36" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/String.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Set.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Integer.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/io/File.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/List.java" />
-    <entry file="file://$PROJECT_DIR$/src/ColorScreen.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/ArrayList.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -456,13 +514,6 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/ImageIcon.java" />
     <entry file="file://$PROJECT_DIR$/Diagram.puml" />
-    <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizTerm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IQuizEntry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -473,77 +524,86 @@
     <entry file="file://$PROJECT_DIR$/src/JPanelTransparent.java" />
     <entry file="file://$PROJECT_DIR$/src/AlphaContainer.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/function/Predicate.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JFrame.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JOptionPane.java" />
-    <entry file="file://$PROJECT_DIR$/src/StudiamMenuBar.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JOptionPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+        <state relative-caret-position="195">
+          <caret line="686" column="22" selection-start-line="686" selection-start-column="22" selection-end-line="686" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/StudiamMenuBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        <state relative-caret-position="425">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#754#913#0" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/JComponent.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/JComponent.java" />
+    <entry file="file://$PROJECT_DIR$/src/SpecialBorder.java" />
+    <entry file="file://$PROJECT_DIR$/src/EditableTitledBorder.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/border/AbstractBorder.java" />
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EditableTitledBorder.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/border/TitledBorder.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/Container.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="775" column="19" selection-start-line="775" selection-start-column="19" selection-end-line="775" selection-end-column="19" />
+        <state relative-caret-position="233">
+          <caret line="415" column="21" selection-start-line="415" selection-start-column="21" selection-end-line="415" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpecialBorder.java" />
-    <entry file="file://$PROJECT_DIR$/src/EditableTitledBorder.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/border/AbstractBorder.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/Frame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        <state relative-caret-position="233">
+          <caret line="134" column="13" selection-start-line="134" selection-start-column="13" selection-end-line="134" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="122" column="31" lean-forward="true" selection-start-line="122" selection-start-column="31" selection-end-line="122" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="183" column="22" selection-start-line="183" selection-start-column="22" selection-end-line="183" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Screen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
+        <state relative-caret-position="170">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="510">
+          <caret line="36" column="45" lean-forward="true" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EditableTitledBorder.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/border/TitledBorder.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="120" column="48" selection-end-line="726" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EditQuizScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="994">
-          <caret line="73" column="25" lean-forward="true" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+        <state relative-caret-position="524">
+          <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -552,22 +612,83 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MainMenuScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+        <state relative-caret-position="255">
+          <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+          <folding>
+            <element signature="e#480#733#0" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+            <element signature="e#1962#2126#0" expanded="true" />
+            <element signature="e#2125#2126#0" expanded="true" />
+            <element signature="e#3785#3977#0" expanded="true" />
+            <element signature="e#3976#3977#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIComboBoxEditor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="53" />
+        <state relative-caret-position="153">
+          <caret line="15" column="69" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StudiamFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#177#430#0" expanded="true" />
+            <element signature="e#429#430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recent">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="81" column="8" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+          <folding>
+            <element signature="e#939#1190#0" expanded="true" />
+            <element signature="e#1189#1190#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizTerm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EditQuizScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIEditorQuizSection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" column="98" selection-start-line="28" selection-start-column="98" selection-end-line="28" selection-end-column="98" />
+        <state relative-caret-position="493">
+          <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

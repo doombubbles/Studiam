@@ -18,6 +18,7 @@ public class GUIEditorQuizTerm extends JComboBox {
     public GUIEditorQuizTerm(QuizTerm term) {
         setAlignmentX(LEFT_ALIGNMENT);
         setForeground(Color.BLACK);
+        addKeyListener(Main.mainKeyListener());
         List<String> terms = term.getAlternates();
         terms.add(0, term.toString());
         terms.add(NEW);
@@ -25,8 +26,7 @@ public class GUIEditorQuizTerm extends JComboBox {
         setModel(model);
         setMaximumSize(new Dimension(300, 20));
         setEditable(true);
-        GUIComboBoxEditor editor = new GUIComboBoxEditor();
-        setEditor(editor);
+        setEditor(new GUIComboBoxEditor());
         JTextArea textArea = (JTextArea)getEditor().getEditorComponent();
         textArea.addKeyListener(new KeyListener() {
             @Override
@@ -34,11 +34,19 @@ public class GUIEditorQuizTerm extends JComboBox {
             }
             @Override
             public void keyPressed(KeyEvent e) {
+                //delete this term if the last potential alternative is deleted
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (model.getSize() == 2 && textArea.getText().isEmpty()) {
                         delete();
+                    } else {
+
+                        Main.getMainFrame().requestFocus();
                     }
                     e.consume();
+                }
+                //unfocus
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    Main.getMainFrame().requestFocus();
                 }
             }
             @Override
@@ -56,9 +64,12 @@ public class GUIEditorQuizTerm extends JComboBox {
             }
 
             index = getSelectedIndex() > -1 ? getSelectedIndex() : index;
+
+            updateParentElement(getParent());
         });
     }
 
+    //update the entry in the combobox to reflect what's typed in the text area
     public void updateTerm() {
         String newTerm = (String) model.getSelectedItem();
         model.removeElementAt(index);
@@ -73,14 +84,22 @@ public class GUIEditorQuizTerm extends JComboBox {
         repaint();
     }
 
+    public void updateParentElement(Container parent) {
+        if (parent instanceof GUIEditorQuizElement) {
+            GUIEditorQuizElement element = (GUIEditorQuizElement) parent;
+            element.updateVisuals();
+        }
+    }
+
+    //bye bye
     public void delete() {
         deleted = true;
         Container parent = getParent();
         parent.remove(this);
-        parent.revalidate();
-        parent.repaint();
+        updateParentElement(parent);
     }
 
+    //method to get the baseline QuizTerm from this GUIEditorQuizTerm
     public QuizTerm getQuizTerm() {
         QuizTerm quizTerm = new QuizTerm((String) model.getSelectedItem());
         for (int i = 0; i < model.getSize() - 1; i++) {

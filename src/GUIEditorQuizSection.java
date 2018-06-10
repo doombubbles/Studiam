@@ -1,38 +1,29 @@
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GUIEditorQuizSection extends JPanel {
 
+    JTextArea sectionNameArea;
+
     public GUIEditorQuizSection(QuizSection section) {
+        addKeyListener(Main.mainKeyListener());
         setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(200, 200, 200, 100));
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(15, 0, 0, 0), //outside
                 BorderFactory.createLineBorder(Color.BLACK)),
-                BorderFactory.createEmptyBorder(-15,5,25,5))); //inside
+                BorderFactory.createEmptyBorder(-11,5,15,5))); //inside
 
 
-        JPanel sectionNamePanel = new JPanel(new BorderLayout()) {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.setColor( getBackground() );
-                g.fillRect(0, 0, getWidth(), getHeight());
-                super.paintComponent(g);
-            }
-        };
-        sectionNamePanel.setOpaque(false);
-        sectionNamePanel.setMinimumSize(new Dimension(100, 20));
-        sectionNamePanel.setPreferredSize(new Dimension(0, 20));
-        sectionNamePanel.setMaximumSize(new Dimension(2000, 20));
-        sectionNamePanel.setBackground(Main.CLEAR);
-        JTextArea sectionNameArea = new JTextArea(section.getName());
-        sectionNameArea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        sectionNameArea.setSelectionColor(Main.LESS_PURPLE);
-        sectionNameArea.setBorder(BorderFactory.createLoweredBevelBorder());
+        JPanel sectionNamePanel = StudiamFactory.newTransparentPanel(new BorderLayout());
+        sectionNameArea = StudiamFactory.newStudiamTextArea(section.getName(), 20,
+                BorderFactory.createCompoundBorder(BorderFactory.createLoweredBevelBorder(), //outside
+                        BorderFactory.createEmptyBorder(-5, 0,0, 0))); //inside
         sectionNamePanel.add(sectionNameArea, BorderLayout.WEST);
         add(sectionNamePanel);
 
@@ -40,6 +31,7 @@ public class GUIEditorQuizSection extends JPanel {
         for (QuizElement quizElement : section) {
             add(new GUIEditorQuizElement(quizElement));
         }
+
         JButton newButton = new JButton();
         newButton.setText("New");
         newButton.setPreferredSize(new Dimension(100, 25));
@@ -49,22 +41,40 @@ public class GUIEditorQuizSection extends JPanel {
                 QuizElement element1 = new QuizElement("[term]");
                 GUIEditorQuizElement newElement = new GUIEditorQuizElement(element1);
                 add(newElement, getComponentCount() - 1);
-                updateBorder();
-                revalidate();
-                repaint();
-
+                updateVisuals();
             }
         });
-        revalidate();
-        repaint();
         add(newButton);
+        updateVisuals();
     }
 
-    public void updateBorder() {
+    public void updateVisuals() {
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(15, 0, 0, 0), //outside
                 BorderFactory.createLineBorder(Color.BLACK)),
                 BorderFactory.createEmptyBorder(-15,5,8 + 6 * getComponentCount(),5)));
+        revalidate();
+        repaint();
+    }
+
+    //method to get all the specific GUIEditorQuizElement components from this element
+    public List<GUIEditorQuizElement> getGUIQuizElements() {
+        List<GUIEditorQuizElement> list = new ArrayList<>();
+        for (Component c : getComponents()) {
+            if (c instanceof GUIEditorQuizElement) {
+                list.add((GUIEditorQuizElement) c);
+            }
+        }
+        return list;
+    }
+
+    //method to get the base QuizSection from this GUIEditorQuizSection
+    public QuizSection getQuizSectiom() {
+        QuizSection section = new QuizSection(sectionNameArea.getText());
+        for (GUIEditorQuizElement quizElement : getGUIQuizElements()) {
+            section.add(quizElement.getQuizElement());
+        }
+        return section;
     }
 
     @Override
