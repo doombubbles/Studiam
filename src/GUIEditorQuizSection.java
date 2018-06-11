@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GUIEditorQuizSection extends JPanel {
 
-    JTextArea sectionNameArea;
+    private JTextField sectionNameArea;
 
     public GUIEditorQuizSection(QuizSection section) {
         addKeyListener(Main.mainKeyListener());
@@ -15,25 +15,38 @@ public class GUIEditorQuizSection extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(200, 200, 200, 100));
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(15, 0, 0, 0), //outside
+                BorderFactory.createEmptyBorder(15, 0, 0, 1000), //outside
                 BorderFactory.createLineBorder(Color.BLACK)),
-                BorderFactory.createEmptyBorder(-11,5,15,5))); //inside
+                BorderFactory.createEmptyBorder(-13,5,5,5))); //inside
 
 
         JPanel sectionNamePanel = StudiamFactory.newTransparentPanel(new BorderLayout());
-        sectionNameArea = StudiamFactory.newStudiamTextArea(section.getName(), 20,
+        sectionNameArea = StudiamFactory.newStudiamTextField(section.getName(), 20,
                 BorderFactory.createCompoundBorder(BorderFactory.createLoweredBevelBorder(), //outside
-                        BorderFactory.createEmptyBorder(-5, 0,0, 0))); //inside
+                        BorderFactory.createEmptyBorder(-2, 0,-2, 0))); //inside
         sectionNamePanel.add(sectionNameArea, BorderLayout.WEST);
-        add(sectionNamePanel);
 
+
+        sectionNamePanel.add(deleteButton(), BorderLayout.EAST);
+
+
+        add(sectionNamePanel);
         setAlignmentX(LEFT_ALIGNMENT);
         for (QuizElement quizElement : section) {
             add(new GUIEditorQuizElement(quizElement));
         }
 
+        add(newButton());
+    }
+
+    public String getSectionName() {
+        return sectionNameArea.getText();
+    }
+
+    private JButton newButton() {
         JButton newButton = new JButton();
         newButton.setText("New");
+        newButton.setForeground(Color.BLACK);
         newButton.setPreferredSize(new Dimension(100, 25));
         newButton.addActionListener(new ActionListener() {
             @Override
@@ -44,17 +57,38 @@ public class GUIEditorQuizSection extends JPanel {
                 updateVisuals();
             }
         });
-        add(newButton);
-        updateVisuals();
+        return newButton;
+    }
+
+    private JButton deleteButton() {
+        JButton deleteButton = new JButton();
+        deleteButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete();
+            }
+        });
+        deleteButton.setText("X");
+        deleteButton.setMargin(new Insets(0, 0, 0, 0));
+        deleteButton.setFont(new Font("Arial", Font.BOLD, 20));
+        deleteButton.setPreferredSize(new Dimension(25, 25));
+        deleteButton.setMaximumSize(new Dimension(25, 25));
+        deleteButton.setForeground(Color.BLACK);
+        deleteButton.setFocusable(false);
+        return deleteButton;
     }
 
     public void updateVisuals() {
-        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(15, 0, 0, 0), //outside
-                BorderFactory.createLineBorder(Color.BLACK)),
-                BorderFactory.createEmptyBorder(-15,5,8 + 6 * getComponentCount(),5)));
         revalidate();
         repaint();
+    }
+
+    //method to delete this quiz section and keep things looking right
+    public void delete() {
+        Container parent = getParent();
+        parent.remove(this);
+        parent.revalidate();
+        parent.repaint();
     }
 
     //method to get all the specific GUIEditorQuizElement components from this element

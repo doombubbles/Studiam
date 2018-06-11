@@ -2,9 +2,6 @@ import sun.awt.image.FileImageSource;
 import sun.awt.image.ToolkitImage;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
 

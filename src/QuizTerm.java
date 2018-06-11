@@ -30,11 +30,23 @@ public class QuizTerm {
         return term;
     }
 
+    public boolean matches(String s) {
+        return term.equals(s) || alternates.contains(s);
+    }
+
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof String) {
-            String string = (String) obj;
-            return term.equals(string) || alternates.contains(string);
+        if (obj instanceof QuizTerm) {
+            QuizTerm quizTerm = (QuizTerm) obj;
+            if (quizTerm.getAlternates().size() != alternates.size()) {
+                return false;
+            }
+            for (int i = 0; i < alternates.size(); i++) {
+                if (!alternates.get(i).equals(quizTerm.getAlternates().get(i))) {
+                    return false;
+                }
+            }
+            return quizTerm.toString().equals(term);
         } else return super.equals(obj);
     }
 }

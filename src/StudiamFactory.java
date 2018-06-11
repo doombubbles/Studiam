@@ -3,6 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.NumberFormat;
 
 public class StudiamFactory {
 
@@ -28,39 +29,58 @@ public class StudiamFactory {
         return newTransparentPanel(null);
     }
 
-    public static JTextArea newStudiamTextArea(String s) {
-        return newStudiamTextArea(s,15, null);
+    public static JTextField newStudiamTextField(String s, int fontSize) {
+        return newStudiamTextField(s, fontSize, null);
     }
 
-    public static JTextArea newStudiamTextArea(String s, int fontSize) {
-        return newStudiamTextArea(s, fontSize, null);
+    public static JTextField newStudiamTextField(String s, int fontSize, Border border) {
+        return newStudiamTextField(s, fontSize, border, null);
     }
 
-    public static JTextArea newStudiamTextArea(String s, int fontSize, Border border) {
-        JTextArea jTextArea = new JTextArea(s);
-        jTextArea.setFont(new Font("Times New Roman", Font.BOLD, fontSize));
-        jTextArea.setSelectionColor(Main.LESS_PURPLE);
+    public static JTextField newStudiamTextField(String s, int fontSize, Border border, NumberFormat format) {
+        JTextField jTextField;
+        if (format != null) {
+            jTextField = new JFormattedTextField(format);
+            jTextField.setText(s);
+        } else jTextField = new JTextField(s);
+
+        jTextField.setFont(new Font("Times New Roman", Font.BOLD, fontSize));
+        jTextField.setSelectionColor(Main.LESS_PURPLE);
         if (border != null) {
-            jTextArea.setBorder(border);
+            jTextField.setBorder(border);
         }
-        jTextArea.setForeground(Color.BLACK);
-        jTextArea.addKeyListener(new KeyListener() {
+        jTextField.setForeground(Color.BLACK);
+        jTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     Main.getMainFrame().requestFocus();
                 }
             }
-
             @Override
             public void keyReleased(KeyEvent e) {
             }
         });
-        return jTextArea;
+        return jTextField;
+    }
+
+    public static JLabel newStudiamLabel(String s, int fontSize) {
+        return newStudiamLabel(s, fontSize, null);
+    }
+
+    public static JLabel newStudiamLabel(String s, int fontSize, Border border) {
+        JLabel label = new JLabel();
+        label.setText(s);
+        label.setFont(new Font("Times New Roman", Font.BOLD, fontSize));
+        if (border != null) {
+            label.setBorder(border);
+        }
+        label.setForeground(Color.BLACK);
+        label.setVisible(true);
+        return label;
     }
 
     public static JButton newStudiamButton(AbstractAction action) {

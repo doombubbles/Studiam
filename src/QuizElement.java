@@ -44,4 +44,14 @@ public class QuizElement extends ArrayList<QuizTerm> implements IQuizEntry {
     public List<QuizElement> getAll() {
         return Arrays.asList(this);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof QuizElement) {
+            QuizElement quizElement = (QuizElement) o;
+
+            return convertBack().equals(quizElement.convertBack());
+        }
+        return super.equals(o);
+    }
 }

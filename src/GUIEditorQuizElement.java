@@ -20,7 +20,6 @@ public class GUIEditorQuizElement extends JPanel {
             add(new GUIEditorQuizTerm(term));
         }
 
-
         add(Box.createRigidArea(new Dimension(10, 0)));
         add(addButton());
         add(Box.createRigidArea(new Dimension(10, 0)));
@@ -45,6 +44,8 @@ public class GUIEditorQuizElement extends JPanel {
         addButton.setFont(new Font("Arial", Font.BOLD, 15));
         addButton.setPreferredSize(new Dimension(20, 20));
         addButton.setMaximumSize(new Dimension(20, 20));
+        addButton.setForeground(Color.BLACK);
+        addButton.setFocusable(false);
         return addButton;
     }
 
@@ -62,6 +63,8 @@ public class GUIEditorQuizElement extends JPanel {
         deleteButton.setFont(new Font("Arial", Font.BOLD, 15));
         deleteButton.setPreferredSize(new Dimension(20, 20));
         deleteButton.setMaximumSize(new Dimension(20, 20));
+        deleteButton.setForeground(Color.BLACK);
+        addButton().setFocusable(false);
         return deleteButton;
     }
 
@@ -80,13 +83,14 @@ public class GUIEditorQuizElement extends JPanel {
         revalidate();
         repaint();
 
-        /*
-        int total = 100;
+
+        int total = 110;
         for (GUIEditorQuizTerm term : getGUIQuizTerms()) {
             total += Math.max(75, term.getSize().width);
         }
+        setPreferredSize(new Dimension(total, 40));
         setMaximumSize(new Dimension(total, 40));
-        */
+        setMinimumSize(new Dimension(total, 40));
 
     }
 

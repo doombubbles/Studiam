@@ -18,7 +18,7 @@ public class QuizFile extends File {
         super(file.getPath());
     }
 
-    public Quiz initialize() {
+    public Quiz createQuiz() {
         Scanner scanner;
         try {
             scanner = new Scanner(this);
@@ -41,6 +41,9 @@ public class QuizFile extends File {
                     break;
                 case "quizDesc":
                     quiz.description = data;
+                    break;
+                case "quizPercent":
+                    quiz.percent = Integer.parseInt(data);
                     break;
                 case "quizSection":
                     if (section == null) {
@@ -70,21 +73,6 @@ public class QuizFile extends File {
         }
 
         return quiz;
-    }
-
-
-    public void reverseInitialize(PrintStream outputStream) {
-        outputStream.println("quizName = " + quiz.name);
-        outputStream.println("quizDex = " + quiz.description);
-        for (IQuizEntry entry : quiz) {
-            if (entry instanceof QuizSection) {
-                QuizSection section = (QuizSection) entry;
-                outputStream.println("quizSection = " + section.getName());
-                for (QuizElement element : section) {
-                    outputStream.println("quizElement = " + element);
-                }
-            }
-        }
     }
 
 

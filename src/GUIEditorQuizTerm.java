@@ -9,6 +9,7 @@ import java.util.List;
 public class GUIEditorQuizTerm extends JComboBox {
 
     private final String NEW = "[New]";
+    private final String DELETE = "[Delete]";
 
     private int index;
     private DefaultComboBoxModel model;
@@ -22,12 +23,14 @@ public class GUIEditorQuizTerm extends JComboBox {
         List<String> terms = term.getAlternates();
         terms.add(0, term.toString());
         terms.add(NEW);
+        terms.add(DELETE);
         model = new DefaultComboBoxModel<>(terms.toArray());
         setModel(model);
         setMaximumSize(new Dimension(300, 20));
         setEditable(true);
         setEditor(new GUIComboBoxEditor());
         JTextArea textArea = (JTextArea)getEditor().getEditorComponent();
+        textArea.setForeground(Color.BLACK);
         textArea.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -36,10 +39,9 @@ public class GUIEditorQuizTerm extends JComboBox {
             public void keyPressed(KeyEvent e) {
                 //delete this term if the last potential alternative is deleted
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (model.getSize() == 2 && textArea.getText().isEmpty()) {
+                    if (model.getSize() == 3 && textArea.getText().isEmpty()) {
                         delete();
                     } else {
-
                         Main.getMainFrame().requestFocus();
                     }
                     e.consume();
@@ -56,8 +58,11 @@ public class GUIEditorQuizTerm extends JComboBox {
 
         addActionListener(e -> {
             if (e.getActionCommand().equals("comboBoxChanged") && model.getSelectedItem().equals(NEW)) {
-                model.insertElementAt("[term]", model.getSize() - 1);
-                setSelectedIndex(model.getSize() - 2);
+                model.insertElementAt("[term]", model.getSize() - 2);
+                setSelectedIndex(model.getSize() - 3);
+            }
+            if (e.getActionCommand().equals("comboBoxChanged") && model.getSelectedItem().equals(DELETE)) {
+                delete();
             }
             if (e.getActionCommand().equals("comboBoxEdited")) {
                 updateTerm();
@@ -75,11 +80,11 @@ public class GUIEditorQuizTerm extends JComboBox {
         model.removeElementAt(index);
         if (!newTerm.isEmpty()) {
             model.insertElementAt(newTerm, index);
-        } else if (model.getSize() < 2 && !deleted) {
+        } else if (model.getSize() < 3 && !deleted) {
             delete();
             return;
         }
-        setSelectedIndex(Math.min(index, model.getSize() - 2));
+        setSelectedIndex(Math.min(index, model.getSize() - 3));
         revalidate();
         repaint();
     }
@@ -102,7 +107,7 @@ public class GUIEditorQuizTerm extends JComboBox {
     //method to get the baseline QuizTerm from this GUIEditorQuizTerm
     public QuizTerm getQuizTerm() {
         QuizTerm quizTerm = new QuizTerm((String) model.getSelectedItem());
-        for (int i = 0; i < model.getSize() - 1; i++) {
+        for (int i = 0; i < model.getSize() - 2; i++) {
             if (i != getSelectedIndex()) {
                 quizTerm.addAlternate((String) model.getElementAt(i));
             }

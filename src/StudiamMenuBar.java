@@ -1,9 +1,6 @@
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 public class StudiamMenuBar extends JMenuBar{
 
@@ -16,7 +13,7 @@ public class StudiamMenuBar extends JMenuBar{
         this.parent = parent;
 
         fileMenu.add(open());
-        if (screen instanceof EditQuizScreen) {
+        if (screen instanceof QuizEditorScreen) {
             fileMenu.add(save());
         }
 

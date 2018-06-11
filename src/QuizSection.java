@@ -32,4 +32,21 @@ public class QuizSection extends ArrayList<QuizElement> implements IQuizEntry {
     public List<QuizElement> getAll() {
         return this;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof QuizSection) {
+            QuizSection quizSection = (QuizSection) o;
+            if (quizSection.size() != size()) {
+                return false;
+            }
+            for (int i = 0; i < size(); i++) {
+                if (!get(i).equals(quizSection.get(i))) {
+                    return false;
+                }
+            }
+            return name.equals(quizSection.getName());
+        }
+        return super.equals(o);
+    }
 }

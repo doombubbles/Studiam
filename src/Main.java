@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +18,9 @@ public class Main {
     public static final Color PURPLE = new Color(150, 0, 200);
     public static final Color LESS_PURPLE = new Color(174, 99, 250);
     public static final Color CLEAR = new Color(0, 0, 0, 0);
+    public static final List<Integer> KEY_CODES = Arrays.asList(KeyEvent.VK_0, KeyEvent.VK_1,
+            KeyEvent.VK_2, KeyEvent.VK_3, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6,
+            KeyEvent.VK_7, KeyEvent.VK_8, KeyEvent.VK_9, KeyEvent.VK_ENTER, KeyEvent.VK_ESCAPE);
 
     private static MainFrame mainFrame;
 
@@ -34,7 +38,7 @@ public class Main {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (Main.getMainFrame().getCurrentScreen() instanceof EditQuizScreen) {
+                    if (Main.getMainFrame().getCurrentScreen() instanceof QuizEditorScreen) {
                         int hmm = JOptionPane.showConfirmDialog(null,
                                 "Are you sure you want to go back to the main menu?", "Confirm", JOptionPane.YES_NO_OPTION);
                         if (hmm == JOptionPane.OK_OPTION) {
@@ -70,8 +74,8 @@ public class Main {
 
     public static void openFile(File file) {
         QuizFile quizFile = new QuizFile(file);
-        EditQuizScreen editQuizScreen = new EditQuizScreen(quizFile);
-        switchScreen(editQuizScreen);
+        QuizEditorScreen quizEditorScreen = new QuizEditorScreen(quizFile);
+        switchScreen(quizEditorScreen);
 
         try {
             File recentFile = new File(RECENT);
@@ -103,12 +107,12 @@ public class Main {
     }
 
     public static boolean saveFile() {
-        if (!(mainFrame.getCurrentScreen() instanceof EditQuizScreen)) {
+        if (!(mainFrame.getCurrentScreen() instanceof QuizEditorScreen)) {
             return false;
         }
 
-        EditQuizScreen editQuizScreen = (EditQuizScreen) mainFrame.getCurrentScreen();
-        return editQuizScreen.saveFile();
+        QuizEditorScreen quizEditorScreen = (QuizEditorScreen) mainFrame.getCurrentScreen();
+        return quizEditorScreen.saveFile();
     }
 
 

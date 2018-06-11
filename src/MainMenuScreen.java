@@ -1,10 +1,7 @@
-import com.sun.java.swing.plaf.motif.MotifInternalFrameTitlePane;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
