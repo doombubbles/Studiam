@@ -18,9 +18,6 @@ public class Main {
     public static final Color PURPLE = new Color(150, 0, 200);
     public static final Color LESS_PURPLE = new Color(174, 99, 250);
     public static final Color CLEAR = new Color(0, 0, 0, 0);
-    public static final List<Integer> KEY_CODES = Arrays.asList(KeyEvent.VK_0, KeyEvent.VK_1,
-            KeyEvent.VK_2, KeyEvent.VK_3, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6,
-            KeyEvent.VK_7, KeyEvent.VK_8, KeyEvent.VK_9, KeyEvent.VK_ENTER, KeyEvent.VK_ESCAPE);
 
     private static MainFrame mainFrame;
 
