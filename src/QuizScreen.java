@@ -1,16 +1,28 @@
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.util.*;
+import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class QuizScreen extends Screen {
 
+
+    private JPanel viewPanel;
+    private JLabel timer;
+    private Timer internalTimer;
+    private int totalTerms;
+    private JButton turnInButton;
+    private Map<JTextField, QuizTerm> quizzedTerms;
+    private boolean turnedIn = false;
+
     public QuizScreen(Quiz quiz) {
         setLayout(new BorderLayout());
-
+        quizzedTerms = new HashMap<>();
 
         JPanel topPanel = StudiamFactory.newTransparentPanel(new BorderLayout());
         topPanel.setBackground(new Color(200, 200, 200, 100));
@@ -43,18 +55,18 @@ public class QuizScreen extends Screen {
         viewport.setBackground(Main.CLEAR);
 
 
-        JPanel viewPanel = StudiamFactory.newTransparentPanel();
+        viewPanel = StudiamFactory.newTransparentPanel();
         viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.Y_AXIS));
 
         for (IQuizEntry element : quiz) {
             if (element instanceof QuizSection) {
                 QuizSection section = (QuizSection) element;
-                JPanel sectionPanel = new GUIQuizSection(section, quiz.percent, quiz.maxRemoved);
+                JPanel sectionPanel = new GUIQuizSection(section, quiz.percent, quiz.maxRemoved, this);
                 viewPanel.add(sectionPanel);
 
             } else if (element instanceof QuizElement) {
                 QuizElement quizElement = (QuizElement) element;
-                viewPanel.add(new GUIQuizElement(quizElement, quiz.percent, quiz.maxRemoved));
+                viewPanel.add(new GUIQuizElement(quizElement, quiz.percent, quiz.maxRemoved, this));
             }
 
         }
@@ -64,14 +76,37 @@ public class QuizScreen extends Screen {
 
         middlePanel.add(scrollPane(viewport));
 
+    }
 
+    public Map<JTextField, QuizTerm> getQuizzedTerms() {
+        return quizzedTerms;
+    }
 
+    public void totalTermsPlusPlus() {
+        totalTerms++;
+    }
+
+    public boolean isTurnedIn() {
+        return turnedIn;
+    }
+
+    public java.util.List<GUIQuizSection> getGUIQuizSections() {
+        List<GUIQuizSection> list = new ArrayList<>();
+        for (Component c : viewPanel.getComponents()) {
+            if (c instanceof JPanel) {
+                JPanel panel = (JPanel) c;
+                if (panel instanceof GUIQuizSection) {
+                    list.add((GUIQuizSection) panel);
+                }
+            }
+        }
+        return list;
     }
 
     private JLabel timer() {
-        JLabel timer = StudiamFactory.newStudiamLabel("0:00", 30);
+        timer = StudiamFactory.newStudiamLabel("0:00", 30);
         timer.setHorizontalAlignment(SwingConstants.CENTER);
-        Timer realTimer = new Timer();
+        internalTimer = new Timer();
         TimerTask update = new TimerTask() {
             @Override
             public void run() {
@@ -90,25 +125,25 @@ public class QuizScreen extends Screen {
                 timer.setText(numbers[0] + text + numbers[1]);
             }
         };
-        realTimer.schedule(update, 1000, 1000);
+        internalTimer.schedule(update, 1000, 1000);
         return timer;
     }
 
     private JButton turnInButton() {
-        JButton startQuizButton = new JButton();
-        startQuizButton.addActionListener(new ActionListener() {
+        turnInButton = new JButton();
+        turnInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                turnInQuiz();
             }
         });
-        startQuizButton.setBackground(Main.LESS_PURPLE);
-        startQuizButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        startQuizButton.setText("Turn In");
-        startQuizButton.setForeground(Color.BLACK);
-        startQuizButton.setFocusable(false);
-        startQuizButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
-        return startQuizButton;
+        turnInButton.setBackground(Main.LESS_PURPLE);
+        turnInButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        turnInButton.setText("Turn In");
+        turnInButton.setForeground(Color.BLACK);
+        turnInButton.setFocusable(false);
+        turnInButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        return turnInButton;
     }
 
     private JScrollPane scrollPane(JViewport viewPort) {
@@ -127,5 +162,31 @@ public class QuizScreen extends Screen {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         return scrollPane;
+    }
+
+    //Switch to seeing the results of the quiz
+    public void turnInQuiz() {
+        int right = totalTerms;
+        Main.getMainFrame().requestFocus();
+        for (JTextField field : getQuizzedTerms().keySet()) {
+            field.setEditable(false);
+            QuizTerm term = getQuizzedTerms().get(field);
+            if (term.matches(field.getText())) {
+                field.setBackground(Color.GREEN);
+            } else {
+                field.setBackground(Color.RED);
+                field.setText(field.getText() + "*");
+                field.setToolTipText("Correct Answer: " + term.toString());
+                right--;
+            }
+        }
+
+        viewPanel.remove(turnInButton);
+        JLabel scoreLabel = StudiamFactory.newStudiamLabel("Score: " + right + "/" + totalTerms +
+                        " - " + (Math.round(10000 * right / totalTerms) / 100.0), 30,
+                BorderFactory.createLineBorder(Color.BLACK));
+        viewPanel.add(scoreLabel, BorderLayout.EAST);
+        internalTimer.cancel();
+
     }
 }

@@ -45,6 +45,9 @@ public class QuizFile extends File {
                 case "quizPercent":
                     quiz.percent = Integer.parseInt(data);
                     break;
+                case "quizMaxRemoved":
+                    quiz.maxRemoved = Integer.parseInt(data);
+                    break;
                 case "quizSection":
                     if (section == null) {
                         section = new QuizSection(data);

@@ -1,3 +1,5 @@
+import javafx.application.Platform;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -44,6 +46,9 @@ public class GUIEditorQuizTerm extends JComboBox {
                     } else {
                         Main.getMainFrame().requestFocus();
                     }
+                    updateParentElement(getParent());
+                    updateParentElement(getParent());
+
                     e.consume();
                 }
                 //unfocus
@@ -66,6 +71,7 @@ public class GUIEditorQuizTerm extends JComboBox {
             }
             if (e.getActionCommand().equals("comboBoxEdited")) {
                 updateTerm();
+                updateParentElement(getParent());
             }
 
             index = getSelectedIndex() > -1 ? getSelectedIndex() : index;

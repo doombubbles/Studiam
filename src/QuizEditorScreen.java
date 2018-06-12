@@ -179,8 +179,9 @@ public class QuizEditorScreen extends Screen {
         settings.add(percentLabel);
         settings.add(percent);
 
+
         JLabel maxByeLabel = StudiamFactory.newStudiamLabel("Max Removed", 15);
-        maxBye = StudiamFactory.newStudiamTextField("1", 15);
+        maxBye = StudiamFactory.newStudiamTextField(baseQuiz.maxRemoved + "", 15);
         maxBye.setPreferredSize(new Dimension(20, 20));
         maxBye.addActionListener(a -> {
             try {
@@ -203,22 +204,27 @@ public class QuizEditorScreen extends Screen {
         return baseQuiz;
     }
 
+    public List<GUIEditorQuizSection> getGUIEditorQuizSections() {
+        List<GUIEditorQuizSection> list = new ArrayList<>();
+        for (Component c : viewPanel.getComponents()) {
+            if (c instanceof JPanel) {
+                JPanel panel = (JPanel) c;
+                if (panel instanceof GUIEditorQuizSection) {
+                    list.add((GUIEditorQuizSection) panel);
+                }
+            }
+        }
+        return list;
+    }
+
     public Quiz getQuiz() {
         Quiz quiz = new Quiz();
         quiz.name = title.getText();
         quiz.description = desc.getText();
         quiz.percent = Integer.parseInt(percent.getText().replace("%", ""));
         quiz.maxRemoved = Integer.parseInt(maxBye.getText());
-        for (Component c : viewPanel.getComponents()) {
-            if (c instanceof JPanel) {
-                JPanel panel = (JPanel) c;
-                if (panel instanceof GUIEditorQuizSection) {
-                    GUIEditorQuizSection section = (GUIEditorQuizSection) panel;
-                    quiz.add(section.getQuizSectiom());
-                } else if (c instanceof GUIEditorQuizElement) {
-                    quiz.add(((GUIEditorQuizElement) c).getQuizElement());
-                }
-            }
+        for (GUIEditorQuizSection guiSection : getGUIEditorQuizSections()) {
+            quiz.add(guiSection.getQuizSectiom());
         }
         return quiz;
     }

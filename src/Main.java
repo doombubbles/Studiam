@@ -35,7 +35,7 @@ public class Main {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (Main.getMainFrame().getCurrentScreen() instanceof QuizEditorScreen) {
+                    if (!(Main.getMainFrame().getCurrentScreen() instanceof MainMenuScreen)) {
                         int hmm = JOptionPane.showConfirmDialog(null,
                                 "Are you sure you want to go back to the main menu?", "Confirm", JOptionPane.YES_NO_OPTION);
                         if (hmm == JOptionPane.OK_OPTION) {
