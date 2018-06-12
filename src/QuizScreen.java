@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class QuizScreen extends Screen {
 
     public QuizScreen(Quiz quiz) {
-        screenId = "Quiz_" + quiz.name;
         setLayout(new BorderLayout());
 
 
@@ -27,29 +27,8 @@ public class QuizScreen extends Screen {
 
         topPanel.add(turnInButton(), BorderLayout.EAST);
 
-        JLabel timer = StudiamFactory.newStudiamLabel("0:00", 30);
-        timer.setAlignmentX(0.5f);
-        topPanel.add(timer, BorderLayout.CENTER);
-        Timer realTimer = new Timer();
-        TimerTask update = new TimerTask() {
-            @Override
-            public void run() {
-                String[] strings = timer.getText().split(":");
-                int[] numbers = new int[2];
-                numbers[0] = Integer.parseInt(strings[0]);
-                numbers[1] = Integer.parseInt(strings[1]);
-                if (numbers[1] == 59) {
-                    numbers[1] = 0;
-                    numbers[0]++;
-                } else numbers[1]++;
-                String text = ":";
-                if (numbers[1] < 10) {
-                    text += "0";
-                }
-                timer.setText(numbers[0] + text + numbers[1]);
-            }
-        };
-        realTimer.schedule(update, 1000, 1000);
+
+        topPanel.add(timer());
 
 
         JViewport viewport = new JViewport() {
@@ -70,12 +49,12 @@ public class QuizScreen extends Screen {
         for (IQuizEntry element : quiz) {
             if (element instanceof QuizSection) {
                 QuizSection section = (QuizSection) element;
-                JPanel sectionPanel = new GUIQuizSection(section, quiz.percent);
+                JPanel sectionPanel = new GUIQuizSection(section, quiz.percent, quiz.maxRemoved);
                 viewPanel.add(sectionPanel);
 
             } else if (element instanceof QuizElement) {
                 QuizElement quizElement = (QuizElement) element;
-                viewPanel.add(new GUIQuizElement(quizElement, quiz.percent));
+                viewPanel.add(new GUIQuizElement(quizElement, quiz.percent, quiz.maxRemoved));
             }
 
         }
@@ -87,6 +66,32 @@ public class QuizScreen extends Screen {
 
 
 
+    }
+
+    private JLabel timer() {
+        JLabel timer = StudiamFactory.newStudiamLabel("0:00", 30);
+        timer.setHorizontalAlignment(SwingConstants.CENTER);
+        Timer realTimer = new Timer();
+        TimerTask update = new TimerTask() {
+            @Override
+            public void run() {
+                String[] strings = timer.getText().split(":");
+                int[] numbers = new int[2];
+                numbers[0] = Integer.parseInt(strings[0]);
+                numbers[1] = Integer.parseInt(strings[1]);
+                if (numbers[1] == 59) {
+                    numbers[1] = 0;
+                    numbers[0]++;
+                } else numbers[1]++;
+                String text = ":";
+                if (numbers[1] < 10) {
+                    text += "0";
+                }
+                timer.setText(numbers[0] + text + numbers[1]);
+            }
+        };
+        realTimer.schedule(update, 1000, 1000);
+        return timer;
     }
 
     private JButton turnInButton() {

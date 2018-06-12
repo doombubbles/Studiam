@@ -6,6 +6,7 @@ public class Quiz extends ArrayList<IQuizEntry> {
     public String name;
     public String description;
     public int percent;
+    public int maxRemoved;
 
     public List<QuizElement> getAllElements() {
         List<QuizElement> list = new ArrayList<>();

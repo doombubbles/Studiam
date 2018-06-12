@@ -10,7 +10,6 @@ public class GUIEditorQuizSection extends JPanel {
     private JTextField sectionNameArea;
 
     public GUIEditorQuizSection(QuizSection section) {
-        addKeyListener(Main.mainKeyListener());
         setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(200, 200, 200, 100));

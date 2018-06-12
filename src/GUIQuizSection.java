@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GUIQuizSection extends JPanel {
 
-    public GUIQuizSection(QuizSection section, int percent) {
+    public GUIQuizSection(QuizSection section, int percent, int maxRemoved) {
         addKeyListener(Main.mainKeyListener());
         setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -25,7 +25,7 @@ public class GUIQuizSection extends JPanel {
 
         setAlignmentX(LEFT_ALIGNMENT);
         for (QuizElement quizElement : section) {
-            add(new GUIQuizElement(quizElement, percent));
+            add(new GUIQuizElement(quizElement, percent, maxRemoved));
         }
     }
 

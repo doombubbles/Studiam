@@ -14,13 +14,13 @@ public class QuizEditorScreen extends Screen {
     private JTextField title;
     private JTextField desc;
     private JTextField percent;
+    private JTextField maxBye;
     private JPanel viewPanel;
 
     public boolean saved = true;
 
     public QuizEditorScreen(QuizFile file) {
         this.quizFile = file;
-        setBackground(Main.CLEAR);
 
         baseQuiz = file.createQuiz();
 
@@ -117,7 +117,6 @@ public class QuizEditorScreen extends Screen {
                         saveFile();
                     } else return;
                 }
-                JOptionPane.showMessageDialog(null, "Yup, everything cool");
                 Main.switchScreen(new QuizScreen(getQuiz()));
             }
         });
@@ -153,7 +152,7 @@ public class QuizEditorScreen extends Screen {
         JLabel percentLabel = StudiamFactory.newStudiamLabel("Quiz Percent", 15);
         percent = StudiamFactory.newStudiamTextField(baseQuiz.percent + "%", 15);
         percent.setPreferredSize(new Dimension(45, 20));
-        percent.addActionListener(e -> {
+        percent.addActionListener(a -> {
             if (percent.getText().indexOf("%") != percent.getText().length() - 1) {
                 percent.setText(percent.getText().replace("%", "") + "%");
             } else if (percent.getText().isEmpty() || percent.getText().equals("%")) {
@@ -180,6 +179,23 @@ public class QuizEditorScreen extends Screen {
         settings.add(percentLabel);
         settings.add(percent);
 
+        JLabel maxByeLabel = StudiamFactory.newStudiamLabel("Max Removed", 15);
+        maxBye = StudiamFactory.newStudiamTextField("1", 15);
+        maxBye.setPreferredSize(new Dimension(20, 20));
+        maxBye.addActionListener(a -> {
+            try {
+                int test = Integer.parseInt(maxBye.getText());
+                if (test == 0) {
+                    maxBye.setText("1");
+                }
+            } catch (NumberFormatException e) {
+                maxBye.setText("1");
+                return;
+            }
+        });
+        settings.add(maxByeLabel);
+        settings.add(maxBye);
+
         return settings;
     }
 
@@ -192,6 +208,7 @@ public class QuizEditorScreen extends Screen {
         quiz.name = title.getText();
         quiz.description = desc.getText();
         quiz.percent = Integer.parseInt(percent.getText().replace("%", ""));
+        quiz.maxRemoved = Integer.parseInt(maxBye.getText());
         for (Component c : viewPanel.getComponents()) {
             if (c instanceof JPanel) {
                 JPanel panel = (JPanel) c;
@@ -222,6 +239,7 @@ public class QuizEditorScreen extends Screen {
         output.println("quizName = " + quiz.name);
         output.println("quizDesc = " + quiz.description);
         output.println("quizPercent = " + quiz.percent);
+        output.println("quizMaxRemoved = " + quiz.maxRemoved);
         for (IQuizEntry quizEntry : quiz) {
             if (quizEntry instanceof QuizSection) {
                 QuizSection section = (QuizSection) quizEntry;
