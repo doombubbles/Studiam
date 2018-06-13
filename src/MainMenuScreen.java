@@ -45,7 +45,7 @@ public class MainMenuScreen extends Screen {
         JButton newButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Main.newFile();
             }
         });
         newButton.setText("New...");

@@ -43,11 +43,9 @@ public class Main {
                         }
                     }
                 }
-                if (e.getKeyCode() == KeyEvent.VK_ALT) {
-                    mainFrame.revalidate();
-                    mainFrame.pack();
-                    mainFrame.repaint();
-                    System.out.println("packed");
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    mainFrame.requestFocus();
+                    e.consume();
                 }
             }
 
@@ -56,6 +54,30 @@ public class Main {
             }
         };
         return keyListener;
+    }
+
+    public static void newFile() {
+        Quiz newQuiz = new Quiz("untitled", "What's this quiz about? How should I know, I'm just a line of code in the newFile method");
+        newQuiz.add(new QuizSection("default section", new QuizElement("[term]")));
+
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setDialogTitle("New");
+        jFileChooser.setFileFilter(new FileNameExtensionFilter("Studiam Quiz Files", "studiam"));
+        int result = jFileChooser.showSaveDialog(Main.getMainFrame());
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser.getSelectedFile();
+            QuizFile quizFile = new QuizFile(file);
+            QuizEditorScreen quizEditorScreen = new QuizEditorScreen(quizFile, newQuiz);
+            if (mainFrame.getCurrentScreen() instanceof QuizEditorScreen) {
+                QuizEditorScreen editorScreen = (QuizEditorScreen) mainFrame.getCurrentScreen();
+                if (!editorScreen.saveChangesFirst()) {
+                    return;
+                }
+            }
+            switchScreen(quizEditorScreen);
+            addRecentFile(quizFile);
+
+        }
     }
 
     public static void chooseOpenFile() {
@@ -68,12 +90,7 @@ public class Main {
         }
     }
 
-
-    public static void openFile(File file) {
-        QuizFile quizFile = new QuizFile(file);
-        QuizEditorScreen quizEditorScreen = new QuizEditorScreen(quizFile);
-        switchScreen(quizEditorScreen);
-
+    public static boolean addRecentFile(QuizFile quizFile) {
         try {
             File recentFile = new File(RECENT);
             Scanner scanner = new Scanner(recentFile);
@@ -81,13 +98,23 @@ public class Main {
             while (scanner.hasNextLine()) {
                 list.add(scanner.nextLine());
             }
-            list.removeIf(s -> s.equals(file.getPath()));
+            list.removeIf(s -> s.equals(quizFile.getPath()));
             PrintStream printStream = new PrintStream(new FileOutputStream(recentFile, false));
             printStream.println(quizFile.getPath());
             list.forEach(printStream::println);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
+    }
+
+
+    public static void openFile(File file) {
+        QuizFile quizFile = new QuizFile(file);
+        QuizEditorScreen quizEditorScreen = new QuizEditorScreen(quizFile, null);
+        switchScreen(quizEditorScreen);
+        addRecentFile(quizFile);
     }
 
     public static MainFrame getMainFrame() {
@@ -114,6 +141,11 @@ public class Main {
 
 
     public static boolean saveFileAs() {
-        return true;
+        if (!(mainFrame.getCurrentScreen() instanceof QuizEditorScreen)) {
+            return false;
+        }
+
+        QuizEditorScreen quizEditorScreen = (QuizEditorScreen) mainFrame.getCurrentScreen();
+        return quizEditorScreen.saveFileAs();
     }
 }

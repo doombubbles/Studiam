@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 
 public class StudiamMenuBar extends JMenuBar{
 
@@ -13,11 +14,26 @@ public class StudiamMenuBar extends JMenuBar{
         this.parent = parent;
 
         fileMenu.add(open());
+        fileMenu.add(nnew());
         if (screen instanceof QuizEditorScreen) {
             fileMenu.add(save());
+            fileMenu.add(saveAs());
         }
 
         add(fileMenu);
+    }
+
+    private static JMenuItem nnew() {
+        JMenuItem open = new JMenuItem();
+        open.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.newFile();
+            }
+        });
+        open.setAccelerator(KeyStroke.getKeyStroke('N', CTRL));
+        open.setText("New");
+        return open;
     }
 
     private static JMenuItem open() {
@@ -34,7 +50,7 @@ public class StudiamMenuBar extends JMenuBar{
     }
 
     private static JMenuItem save() {
-        JMenuItem save = new JMenuItem("Save");
+        JMenuItem save = new JMenuItem();
         save.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,6 +62,22 @@ public class StudiamMenuBar extends JMenuBar{
         });
         save.setAccelerator(KeyStroke.getKeyStroke('S', CTRL));
         save.setText("Save");
+        return save;
+    }
+
+    private static JMenuItem saveAs() {
+        JMenuItem save = new JMenuItem();
+        save.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Main.saveFileAs()) {
+                    JOptionPane.showMessageDialog(null, "Saved!");
+                }
+
+            }
+        });
+        save.setAccelerator(KeyStroke.getKeyStroke('S', CTRL | InputEvent.SHIFT_MASK));
+        save.setText("Save As...");
         return save;
     }
 }

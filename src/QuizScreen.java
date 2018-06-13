@@ -11,20 +11,24 @@ import java.util.Timer;
 
 public class QuizScreen extends Screen {
 
-
+    private QuizFile quizFile;
     private JPanel viewPanel;
+    private JPanel topPanel;
     private JLabel timer;
     private Timer internalTimer;
     private int totalTerms;
     private JButton turnInButton;
     private Map<JTextField, QuizTerm> quizzedTerms;
     private boolean turnedIn = false;
+    private Score score;
+    private JButton saveScoresButton;
 
-    public QuizScreen(Quiz quiz) {
+    public QuizScreen(Quiz quiz, QuizFile quizFile) {
+        this.quizFile = quizFile;
         setLayout(new BorderLayout());
         quizzedTerms = new HashMap<>();
 
-        JPanel topPanel = StudiamFactory.newTransparentPanel(new BorderLayout());
+        topPanel = StudiamFactory.newTransparentPanel(new BorderLayout());
         topPanel.setBackground(new Color(200, 200, 200, 100));
         add(topPanel, BorderLayout.NORTH);
 
@@ -103,6 +107,32 @@ public class QuizScreen extends Screen {
         return list;
     }
 
+    private int getTime() {
+        String[] text = timer.getText().split(":");
+        return Integer.parseInt(text[0]) * 60 + Integer.parseInt(text[1]);
+    }
+
+    private JButton saveScoresButton() {
+        saveScoresButton = new JButton();
+        saveScoresButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quizFile.saveScore(score);
+                topPanel.remove(saveScoresButton);
+                topPanel.revalidate();
+                topPanel.repaint();
+                topPanel.add(StudiamFactory.newStudiamLabel("Saved!", 30), BorderLayout.EAST);
+            }
+        });
+        saveScoresButton.setBackground(Main.LESS_PURPLE);
+        saveScoresButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        saveScoresButton.setText("Save Score");
+        saveScoresButton.setForeground(Color.BLACK);
+        saveScoresButton.setFocusable(false);
+        saveScoresButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        return saveScoresButton;
+    }
+
     private JLabel timer() {
         timer = StudiamFactory.newStudiamLabel("0:00", 30);
         timer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -166,6 +196,7 @@ public class QuizScreen extends Screen {
 
     //Switch to seeing the results of the quiz
     public void turnInQuiz() {
+        List<String> wrong = new ArrayList<>();
         int right = totalTerms;
         Main.getMainFrame().requestFocus();
         for (JTextField field : getQuizzedTerms().keySet()) {
@@ -177,16 +208,20 @@ public class QuizScreen extends Screen {
                 field.setBackground(Color.RED);
                 field.setText(field.getText() + "*");
                 field.setToolTipText("Correct Answer: " + term.toString());
+                wrong.add(term.toString());
                 right--;
             }
         }
-
-        viewPanel.remove(turnInButton);
+        topPanel.remove(turnInButton);
         JLabel scoreLabel = StudiamFactory.newStudiamLabel("Score: " + right + "/" + totalTerms +
-                        " - " + (Math.round(10000 * right / totalTerms) / 100.0), 30,
+                        " - " + (Math.round(10000 * right / totalTerms) / 100.0) + "%", 30,
                 BorderFactory.createLineBorder(Color.BLACK));
         viewPanel.add(scoreLabel, BorderLayout.EAST);
         internalTimer.cancel();
+        score = new Score(right, totalTerms, getTime(), wrong);
+        topPanel.revalidate();
+        topPanel.repaint();
+        topPanel.add(saveScoresButton(), BorderLayout.EAST);
 
     }
 }

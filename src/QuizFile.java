@@ -15,7 +15,18 @@ public class QuizFile extends File {
     }
 
     public QuizFile(File file) {
-        super(file.getPath());
+        super(file.getPath() + (file.getPath().endsWith(".studiam") ? "" : ".studiam"));
+    }
+
+    public void saveScore(Score score) {
+        PrintStream output;
+        try {
+            output = new PrintStream(new FileOutputStream(this, true));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+        output.println("quizScore = " + score.toString());
     }
 
     public Quiz createQuiz() {
@@ -65,6 +76,9 @@ public class QuizFile extends File {
                         section.add(element);
                     }
                     break;
+                case "quizScore":
+                    Score score = new Score(data);
+                    quiz.addScore(score);
                 default:
                     break;
             }

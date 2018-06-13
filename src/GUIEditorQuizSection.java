@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,27 @@ public class GUIEditorQuizSection extends JPanel {
         sectionNameArea = StudiamFactory.newStudiamTextField(section.getName(), 20,
                 BorderFactory.createCompoundBorder(BorderFactory.createLoweredBevelBorder(), //outside
                         BorderFactory.createEmptyBorder(-2, 0,-2, 0))); //inside
+        sectionNameArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    Main.getMainFrame().requestFocus();
+                    revalidate();
+                    repaint();
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
         sectionNamePanel.add(sectionNameArea, BorderLayout.WEST);
 
 

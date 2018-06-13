@@ -1,6 +1,8 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -19,10 +21,12 @@ public class QuizEditorScreen extends Screen {
 
     public boolean saved = true;
 
-    public QuizEditorScreen(QuizFile file) {
+    public QuizEditorScreen(QuizFile file, Quiz quiz) {
         this.quizFile = file;
 
-        baseQuiz = file.createQuiz();
+        if (quiz == null) {
+            baseQuiz = file.createQuiz();
+        } else baseQuiz = quiz;
 
         screenId = "EditQuiz_" + baseQuiz.name;
         setLayout(new BorderLayout());
@@ -105,19 +109,25 @@ public class QuizEditorScreen extends Screen {
         return newButton;
     }
 
+    public boolean saveChangesFirst() {
+        int hm = JOptionPane.showConfirmDialog(null,
+                "Save your changes first?", "Warning", JOptionPane.OK_CANCEL_OPTION);
+        if (hm == JOptionPane.OK_OPTION) {
+            return true;
+        } else return false;
+    }
+
     private JButton startQuizButton() {
         JButton startQuizButton = new JButton();
         startQuizButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!baseQuiz.equals(getQuiz())) {
-                    int hm = JOptionPane.showConfirmDialog(null,
-                            "Save your changes first?", "Warning", JOptionPane.OK_CANCEL_OPTION);
-                    if (hm == JOptionPane.OK_OPTION) {
+                    if (saveChangesFirst()) {
                         saveFile();
                     } else return;
                 }
-                Main.switchScreen(new QuizScreen(getQuiz()));
+                Main.switchScreen(new QuizScreen(getQuiz(), quizFile));
             }
         });
         startQuizButton.setBackground(Main.LESS_PURPLE);
@@ -229,9 +239,27 @@ public class QuizEditorScreen extends Screen {
         return quiz;
     }
 
+    public boolean saveFileAs() {
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setFileFilter(new FileNameExtensionFilter("Studiam Quiz Files", "studiam"));
+        int result = jFileChooser.showSaveDialog(Main.getMainFrame());
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser.getSelectedFile();
+            QuizFile quizFile = new QuizFile(file);
+            saveFile(quizFile);
+            Main.addRecentFile(quizFile);
+        }
+
+        return true;
+    }
 
 
     public boolean saveFile() {
+        return saveFile(quizFile);
+    }
+
+
+    public boolean saveFile(QuizFile quizFile) {
         PrintStream output;
         try {
             output = new PrintStream(new FileOutputStream(quizFile, false));
@@ -241,6 +269,7 @@ public class QuizEditorScreen extends Screen {
         }
         Quiz quiz = getQuiz();
         baseQuiz = quiz;
+        this.quizFile = quizFile;
 
         output.println("quizName = " + quiz.name);
         output.println("quizDesc = " + quiz.description);
@@ -257,6 +286,9 @@ public class QuizEditorScreen extends Screen {
                 QuizElement element = (QuizElement) quizEntry;
                 output.println("quizElement = " + element.convertBack());
             }
+        }
+        for (Score s : quiz.getScores()) {
+            output.println("quizScore = " + s.toString());
         }
 
         return true;

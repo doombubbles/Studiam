@@ -7,6 +7,30 @@ public class Quiz extends ArrayList<IQuizEntry> {
     public String description;
     public int percent;
     public int maxRemoved;
+    private List<Score> scores;
+
+    public Quiz() {
+        scores = new ArrayList<>();
+    }
+
+    public Quiz(String name) {
+        this.name = name;
+        scores = new ArrayList<>();
+    }
+
+    public Quiz(String name, String description) {
+        this.name = name;
+        this.description = description;
+        scores = new ArrayList<>();
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void addScore(Score score) {
+        scores.add(score);
+    }
 
     public List<QuizElement> getAllElements() {
         List<QuizElement> list = new ArrayList<>();
