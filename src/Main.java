@@ -19,11 +19,35 @@ public class Main {
     public static final Color LESS_PURPLE = new Color(174, 99, 250);
     public static final Color CLEAR = new Color(0, 0, 0, 0);
 
+    public static Color backgroundColor;
     private static MainFrame mainFrame;
 
     public static void main(String[] args){
         mainFrame = new MainFrame();
         mainFrame.setVisible(true);
+
+        loadSettings();
+    }
+
+    public static void loadSettings() {
+        try {
+            Scanner settingsScanner = new Scanner(new File("settings"));
+            while (settingsScanner.hasNextLine()) {
+                String line = settingsScanner.nextLine();
+                String[] data = line.split(" = ");
+                switch (data[0]) {
+                    case "backgroundColor":
+                        String[] values = data[1].split(", ");
+                        backgroundColor = new Color(Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2]), Integer.parseInt(values[3]));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            backgroundColor = CLEAR;
+            e.printStackTrace();
+        }
     }
 
     public static KeyListener mainKeyListener() {

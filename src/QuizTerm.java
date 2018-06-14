@@ -31,7 +31,7 @@ public class QuizTerm {
     }
 
     public boolean matches(String s) {
-        return term.equals(s) || alternates.contains(s);
+        return term.equalsIgnoreCase(s) || alternates.stream().anyMatch(s1 -> s1.toLowerCase().equals(s.toLowerCase()));
     }
 
     @Override

@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Score {
+public class QuizScore {
 
     private int correct;
     private int total;
     private int time;
     private List<String> wrong;
 
-    public Score(int correct, int total, int time, List<String> wrong) {
+    public QuizScore(int correct, int total, int time, List<String> wrong) {
         this.correct = correct;
         this.total = total;
         this.time = time;
         this.wrong = wrong;
     }
 
-    public Score(String dataString) {
+    public QuizScore(String dataString) {
         String[] splitStrings = dataString.split(",");
         correct = Integer.parseInt(splitStrings[0]);
         total = Integer.parseInt(splitStrings[1]);
@@ -36,6 +36,10 @@ public class Score {
 
     public int getTotal() {
         return total;
+    }
+
+    public String toNiceString() {
+        return correct + "/" + total + " - " + (Math.round(10000 * correct / total) / 100.0) + "%";
     }
 
     @Override

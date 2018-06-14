@@ -1,10 +1,7 @@
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.util.*;
 import java.util.List;
 import java.util.Timer;
@@ -20,7 +17,7 @@ public class QuizScreen extends Screen {
     private JButton turnInButton;
     private Map<JTextField, QuizTerm> quizzedTerms;
     private boolean turnedIn = false;
-    private Score score;
+    private QuizScore score;
     private JButton saveScoresButton;
 
     public QuizScreen(Quiz quiz, QuizFile quizFile) {
@@ -126,7 +123,7 @@ public class QuizScreen extends Screen {
         });
         saveScoresButton.setBackground(Main.LESS_PURPLE);
         saveScoresButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        saveScoresButton.setText("Save Score");
+        saveScoresButton.setText("Save QuizScore");
         saveScoresButton.setForeground(Color.BLACK);
         saveScoresButton.setFocusable(false);
         saveScoresButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
@@ -212,13 +209,13 @@ public class QuizScreen extends Screen {
                 right--;
             }
         }
+        internalTimer.cancel();
+        score = new QuizScore(right, totalTerms, getTime(), wrong);
         topPanel.remove(turnInButton);
-        JLabel scoreLabel = StudiamFactory.newStudiamLabel("Score: " + right + "/" + totalTerms +
-                        " - " + (Math.round(10000 * right / totalTerms) / 100.0) + "%", 30,
+        JLabel scoreLabel = StudiamFactory.newStudiamLabel("QuizScore: " + score.toNiceString(), 30,
                 BorderFactory.createLineBorder(Color.BLACK));
         viewPanel.add(scoreLabel, BorderLayout.EAST);
-        internalTimer.cancel();
-        score = new Score(right, totalTerms, getTime(), wrong);
+
         topPanel.revalidate();
         topPanel.repaint();
         topPanel.add(saveScoresButton(), BorderLayout.EAST);

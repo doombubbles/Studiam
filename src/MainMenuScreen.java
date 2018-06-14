@@ -12,16 +12,7 @@ public class MainMenuScreen extends Screen {
         screenId = "MainMenu";
         setLayout(new BorderLayout());
 
-        JPanel mainPanel = new JPanel() {
-            protected void paintComponent(Graphics g)
-            {
-                g.setColor( getBackground() );
-                g.fillRect(0, 0, getWidth(), getHeight());
-                super.paintComponent(g);
-            }
-        };
-        mainPanel.setOpaque(false);
-        mainPanel.setBackground(new Color(0, 0,0, 0));
+        JPanel mainPanel = StudiamFactory.newTransparentPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         add(new JLabel(new ImageIcon("img/screenshot.png")), BorderLayout.NORTH);
 
@@ -29,7 +20,8 @@ public class MainMenuScreen extends Screen {
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         mainPanel.add(openButton());
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        mainPanel.add(importButton());
+        //mainPanel.add(importButton());
+        mainPanel.add(settingsButton());
         mainPanel.add(Box.createRigidArea(new Dimension(0, 45)));
 
         add(mainPanel, BorderLayout.CENTER);
@@ -75,6 +67,18 @@ public class MainMenuScreen extends Screen {
         importButton.setText("Import...");
         importButton.setToolTipText("Import from quizlet or some shit idk");
         return importButton;
+    }
+
+    public JButton settingsButton() {
+        JButton newButton = StudiamFactory.newStudiamButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.switchScreen(new SettingsScreen());
+            }
+        });
+        newButton.setText("Settings");
+        newButton.setToolTipText("Customize your Studiam experience");
+        return newButton;
     }
 
     public JPanel recentFiles() {

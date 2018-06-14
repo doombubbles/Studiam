@@ -7,7 +7,7 @@ public class Quiz extends ArrayList<IQuizEntry> {
     public String description;
     public int percent;
     public int maxRemoved;
-    private List<Score> scores;
+    private List<QuizScore> scores;
 
     public Quiz() {
         scores = new ArrayList<>();
@@ -24,11 +24,11 @@ public class Quiz extends ArrayList<IQuizEntry> {
         scores = new ArrayList<>();
     }
 
-    public List<Score> getScores() {
+    public List<QuizScore> getScores() {
         return scores;
     }
 
-    public void addScore(Score score) {
+    public void addScore(QuizScore score) {
         scores.add(score);
     }
 

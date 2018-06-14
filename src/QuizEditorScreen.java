@@ -80,8 +80,17 @@ public class QuizEditorScreen extends Screen {
 
         }
 
+
+
         viewPanel.add(newButton());
-        viewPanel.add(Box.createVerticalStrut(1000));
+        viewPanel.add(Box.createVerticalStrut(50));
+
+        viewPanel.add(StudiamFactory.newStudiamLabel("Score History:", 42));
+        for (QuizScore score : baseQuiz.getScores()) {
+            viewPanel.add(Box.createVerticalStrut(5));
+            viewPanel.add(StudiamFactory.newStudiamLabel(score.toNiceString(), 20));
+        }
+
         viewport.add(viewPanel);
 
         baseQuiz = getQuiz();
@@ -100,7 +109,7 @@ public class QuizEditorScreen extends Screen {
                 QuizSection section = new QuizSection("name", Arrays.asList(element1));
                 JPanel quizSectionPanel = new GUIEditorQuizSection(section);
 
-                viewPanel.add(quizSectionPanel, viewPanel.getComponentCount() - 2);
+                viewPanel.add(quizSectionPanel, viewPanel.getComponentCount() - 3 - baseQuiz.getScores().size() * 2);
                 saved = false;
                 revalidate();
                 repaint();
@@ -236,6 +245,7 @@ public class QuizEditorScreen extends Screen {
         for (GUIEditorQuizSection guiSection : getGUIEditorQuizSections()) {
             quiz.add(guiSection.getQuizSectiom());
         }
+        baseQuiz.getScores().forEach(quiz::addScore);
         return quiz;
     }
 
@@ -287,7 +297,7 @@ public class QuizEditorScreen extends Screen {
                 output.println("quizElement = " + element.convertBack());
             }
         }
-        for (Score s : quiz.getScores()) {
+        for (QuizScore s : quiz.getScores()) {
             output.println("quizScore = " + s.toString());
         }
 

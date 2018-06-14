@@ -2,8 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class QuizFile extends File {
@@ -18,7 +16,7 @@ public class QuizFile extends File {
         super(file.getPath() + (file.getPath().endsWith(".studiam") ? "" : ".studiam"));
     }
 
-    public void saveScore(Score score) {
+    public void saveScore(QuizScore score) {
         PrintStream output;
         try {
             output = new PrintStream(new FileOutputStream(this, true));
@@ -77,7 +75,7 @@ public class QuizFile extends File {
                     }
                     break;
                 case "quizScore":
-                    Score score = new Score(data);
+                    QuizScore score = new QuizScore(data);
                     quiz.addScore(score);
                 default:
                     break;
