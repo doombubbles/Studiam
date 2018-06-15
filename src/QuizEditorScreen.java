@@ -41,6 +41,7 @@ public class QuizEditorScreen extends Screen {
         title = StudiamFactory.newStudiamTextField(baseQuiz.name, 30,
                 BorderFactory.createCompoundBorder(BorderFactory.createLoweredBevelBorder(), //outside
                 BorderFactory.createEmptyBorder(0, 2, 0, 5))); //inside
+        title.addKeyListener(Main.textFieldKeyListener());
         topPanel.add(title, BorderLayout.WEST);
 
         desc = StudiamFactory.newStudiamTextField(baseQuiz.description, 15,
@@ -85,12 +86,24 @@ public class QuizEditorScreen extends Screen {
         viewPanel.add(newButton());
         viewPanel.add(Box.createVerticalStrut(50));
 
+
+
+
+
         viewPanel.add(StudiamFactory.newStudiamLabel("Score History:", 42));
         for (QuizScore score : baseQuiz.getScores()) {
-            viewPanel.add(Box.createVerticalStrut(5));
-            viewPanel.add(StudiamFactory.newStudiamLabel(score.toNiceString(), 20));
+            JPanel scorePanel = StudiamFactory.newTransparentPanel();
+            scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.X_AXIS));
+            scorePanel.setAlignmentX(LEFT_ALIGNMENT);
+            scorePanel.setMaximumSize(new Dimension(350, 1000));
+            JLabel scoreLabel = StudiamFactory.newStudiamLabel(score.toNiceString(), 20);
+            scorePanel.add(scoreLabel);
+            scorePanel.add(Box.createHorizontalStrut(5));
+            scorePanel.add(deleteScoreButton(scorePanel, score));
+            viewPanel.add(scorePanel);
         }
 
+        viewPanel.add(Box.createVerticalStrut(500));
         viewport.add(viewPanel);
 
         baseQuiz = getQuiz();
@@ -108,14 +121,37 @@ public class QuizEditorScreen extends Screen {
 
                 QuizSection section = new QuizSection("name", Arrays.asList(element1));
                 JPanel quizSectionPanel = new GUIEditorQuizSection(section);
-
-                viewPanel.add(quizSectionPanel, viewPanel.getComponentCount() - 3 - baseQuiz.getScores().size() * 2);
+                viewPanel.add(quizSectionPanel, viewPanel.getComponentCount() - 4 - baseQuiz.getScores().size());
                 saved = false;
+                revalidate();
+                repaint();
+
+                //Main.addToScreenHistory();
+            }
+        });
+        return newButton;
+    }
+
+    //button to delete a quiz score
+    private JButton deleteScoreButton(JPanel scorePanel, QuizScore score) {
+        JButton deleteScoreButton = new JButton();
+        deleteScoreButton.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewPanel.remove(scorePanel);
+                baseQuiz.getScores().remove(score);
                 revalidate();
                 repaint();
             }
         });
-        return newButton;
+        deleteScoreButton.setText("X");
+        deleteScoreButton.setMargin(new Insets(0, 0, 0, 0));
+        deleteScoreButton.setFont(new Font("Arial", Font.BOLD, 15));
+        deleteScoreButton.setPreferredSize(new Dimension(20, 20));
+        deleteScoreButton.setMaximumSize(new Dimension(20, 20));
+        deleteScoreButton.setForeground(Color.BLACK);
+        deleteScoreButton.setFocusable(false);
+        return deleteScoreButton;
     }
 
     public boolean saveChangesFirst() {

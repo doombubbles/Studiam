@@ -39,7 +39,7 @@ public class QuizScore {
     }
 
     public String toNiceString() {
-        return correct + "/" + total + " - " + (Math.round(10000 * correct / total) / 100.0) + "%";
+        return correct + "/" + total + " - " + (Math.round(10000 * correct / total) / 100.0) + "%" + " in " + time + " seconds.";
     }
 
     @Override

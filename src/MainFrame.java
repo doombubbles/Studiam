@@ -2,10 +2,14 @@ import sun.awt.image.FileImageSource;
 import sun.awt.image.ToolkitImage;
 
 import javax.swing.*;
+import java.util.List;
 
 public class MainFrame extends JFrame {
 
     private Screen currentScreen;
+
+    private List<Screen> screenHistory;
+    private int screenHistoryIndex;
 
     public MainFrame() {
         init();
@@ -15,6 +19,18 @@ public class MainFrame extends JFrame {
 
     public Screen getCurrentScreen() {
         return currentScreen;
+    }
+
+    public void setScreenHistoryIndex(int screenHistoryIndex) {
+        this.screenHistoryIndex = screenHistoryIndex;
+    }
+
+    public int getScreenHistoryIndex() {
+        return screenHistoryIndex;
+    }
+
+    public List<Screen> getScreenHistory() {
+        return screenHistory;
     }
 
     public void setCurrentScreen(Screen currentScreen) {

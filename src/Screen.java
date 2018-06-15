@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Screen extends JPanel {
+public class Screen extends JPanel implements Cloneable {
 
     protected String screenId = "";
 
@@ -29,5 +29,13 @@ public class Screen extends JPanel {
         g.fillRect(0, 0, size.width, size.height);
     }
 
-
+    @Override
+    protected Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

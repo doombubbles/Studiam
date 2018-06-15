@@ -123,7 +123,7 @@ public class QuizScreen extends Screen {
         });
         saveScoresButton.setBackground(Main.LESS_PURPLE);
         saveScoresButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        saveScoresButton.setText("Save QuizScore");
+        saveScoresButton.setText("Save Score");
         saveScoresButton.setForeground(Color.BLACK);
         saveScoresButton.setFocusable(false);
         saveScoresButton.setFont(new Font("Times New Roman", Font.BOLD, 25));

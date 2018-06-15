@@ -58,7 +58,10 @@ public class StudiamFactory {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     Main.getMainFrame().requestFocus();
+                    Main.getMainFrame().revalidate();
+                    Main.getMainFrame().repaint();
                 }
+
             }
             @Override
             public void keyReleased(KeyEvent e) {

@@ -80,6 +80,27 @@ public class Main {
         return keyListener;
     }
 
+    public static KeyListener textFieldKeyListener() {
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    mainFrame.requestFocus();
+                    mainFrame.revalidate();
+                    mainFrame.repaint();
+                    e.consume();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        };
+        return keyListener;
+    }
+
     public static void newFile() {
         Quiz newQuiz = new Quiz("untitled", "What's this quiz about? How should I know, I'm just a line of code in the newFile method");
         newQuiz.add(new QuizSection("default section", new QuizElement("[term]")));
@@ -141,17 +162,48 @@ public class Main {
         addRecentFile(quizFile);
     }
 
+    /*
+    public static void undo() {
+        if (mainFrame.getScreenHistoryIndex() < mainFrame.getScreenHistory().size()) {
+            switchScreen(mainFrame.getScreenHistory().get(mainFrame.getScreenHistoryIndex() - 1), false);
+        }
+
+    }
+
+    public static void redo() {
+        if (mainFrame.getScreenHistoryIndex() < mainFrame.getScreenHistory().size() - 1) {
+            switchScreen(mainFrame.getScreenHistory().get(mainFrame.getScreenHistoryIndex() + 1), false);
+        }
+    }
+
+    public static void addToScreenHistory(Screen screen) {
+        mainFrame.getScreenHistory().add(screen);
+        mainFrame.setScreenHistoryIndex(mainFrame.getScreenHistoryIndex() + 1);
+    }
+    */
     public static MainFrame getMainFrame() {
         return mainFrame;
     }
 
-    public static void switchScreen(Screen newScreen) {
+    public static void switchScreen(Screen newScreen, boolean log) {
         mainFrame.remove(mainFrame.getCurrentScreen());
         mainFrame.setCurrentScreen(newScreen);
+        /*
+        if (log) {
+            if (mainFrame.getScreenHistoryIndex() < mainFrame.getScreenHistory().size() - 1) {
+                mainFrame.getScreenHistory().removeIf(s -> mainFrame.getScreenHistory().indexOf(s) > mainFrame.getScreenHistoryIndex());
+            }
+            mainFrame.getScreenHistory().add((Screen) newScreen.clone());
+        }
+        */
         mainFrame.add(newScreen);
         mainFrame.updateMenubar();
         mainFrame.revalidate();
         mainFrame.repaint();
+    }
+
+    public static void switchScreen(Screen newScreen) {
+        switchScreen(newScreen, true);
     }
 
     public static boolean saveFile() {
