@@ -102,6 +102,7 @@ public class QuizEditorScreen extends Screen {
             scorePanel.add(deleteScoreButton(scorePanel, score));
             viewPanel.add(scorePanel);
         }
+        viewPanel.add(new QuizScoreGraph(baseQuiz.getScores()));
 
         viewPanel.add(Box.createVerticalStrut(500));
         viewport.add(viewPanel);
@@ -109,6 +110,7 @@ public class QuizEditorScreen extends Screen {
         baseQuiz = getQuiz();
     }
 
+    //method for the button to add new Sections
     private JButton newButton() {
         JButton newButton = new JButton();
         newButton.setText("New Section");
@@ -121,7 +123,8 @@ public class QuizEditorScreen extends Screen {
 
                 QuizSection section = new QuizSection("name", Arrays.asList(element1));
                 JPanel quizSectionPanel = new GUIEditorQuizSection(section);
-                viewPanel.add(quizSectionPanel, viewPanel.getComponentCount() - 4 - baseQuiz.getScores().size());
+                viewPanel.add(quizSectionPanel, viewPanel.getComponentCount()
+                        - 4 - baseQuiz.getScores().size());
                 saved = false;
                 revalidate();
                 repaint();
@@ -132,7 +135,7 @@ public class QuizEditorScreen extends Screen {
         return newButton;
     }
 
-    //button to delete a quiz score
+    //method for the button to delete a quiz score
     private JButton deleteScoreButton(JPanel scorePanel, QuizScore score) {
         JButton deleteScoreButton = new JButton();
         deleteScoreButton.setAction(new AbstractAction() {
@@ -154,6 +157,7 @@ public class QuizEditorScreen extends Screen {
         return deleteScoreButton;
     }
 
+    //method to query the user to see if they'll save their changes first
     public boolean saveChangesFirst() {
         int hm = JOptionPane.showConfirmDialog(null,
                 "Save your changes first?", "Warning", JOptionPane.OK_CANCEL_OPTION);
@@ -162,6 +166,7 @@ public class QuizEditorScreen extends Screen {
         } else return false;
     }
 
+    //method for the button to start the quiz
     private JButton startQuizButton() {
         JButton startQuizButton = new JButton();
         startQuizButton.addActionListener(new ActionListener() {
@@ -184,6 +189,7 @@ public class QuizEditorScreen extends Screen {
         return startQuizButton;
     }
 
+    //method for creating the scrollpane window where the quiz stuff will be housed
     private JScrollPane scrollPane(JViewport viewPort) {
         JScrollPane scrollPane = new JScrollPane(viewPort) {
             @Override
@@ -202,6 +208,7 @@ public class QuizEditorScreen extends Screen {
         return scrollPane;
     }
 
+    //method to make the panel of settings for the quiz
     private JPanel settingsPanel() {
         JPanel settings = StudiamFactory.newTransparentPanel();
         JLabel percentLabel = StudiamFactory.newStudiamLabel("Quiz Percent", 15);
@@ -255,10 +262,12 @@ public class QuizEditorScreen extends Screen {
         return settings;
     }
 
+    //method in-case you specifically want to see the base quiz
     public Quiz getBaseQuiz() {
         return baseQuiz;
     }
 
+    //method to get all of the quiz sections in the editor as GUIEditorQuizSection objects
     public List<GUIEditorQuizSection> getGUIEditorQuizSections() {
         List<GUIEditorQuizSection> list = new ArrayList<>();
         for (Component c : viewPanel.getComponents()) {
@@ -272,6 +281,7 @@ public class QuizEditorScreen extends Screen {
         return list;
     }
 
+    //method to update the internal quiz file with what's currently displayed and return that
     public Quiz getQuiz() {
         Quiz quiz = new Quiz();
         quiz.name = title.getText();
@@ -285,6 +295,7 @@ public class QuizEditorScreen extends Screen {
         return quiz;
     }
 
+    //method to find the location to save the quiz file to and save it
     public boolean saveFileAs() {
         JFileChooser jFileChooser = new JFileChooser();
         jFileChooser.setFileFilter(new FileNameExtensionFilter("Studiam Quiz Files", "studiam"));
@@ -299,12 +310,12 @@ public class QuizEditorScreen extends Screen {
         return true;
     }
 
-
+    //dummy method for next method
     public boolean saveFile() {
         return saveFile(quizFile);
     }
 
-
+    //method to save the file being edited
     public boolean saveFile(QuizFile quizFile) {
         PrintStream output;
         try {

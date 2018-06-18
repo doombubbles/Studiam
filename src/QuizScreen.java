@@ -18,7 +18,7 @@ public class QuizScreen extends Screen {
     private Map<JTextField, QuizTerm> quizzedTerms;
     private boolean turnedIn = false;
     private QuizScore score;
-    private JButton saveScoresButton;
+    private JButton saveScoreButton;
 
     public QuizScreen(Quiz quiz, QuizFile quizFile) {
         this.quizFile = quizFile;
@@ -62,12 +62,14 @@ public class QuizScreen extends Screen {
         for (IQuizEntry element : quiz) {
             if (element instanceof QuizSection) {
                 QuizSection section = (QuizSection) element;
-                JPanel sectionPanel = new GUIQuizSection(section, quiz.percent, quiz.maxRemoved, this);
+                JPanel sectionPanel =
+                        new GUIQuizSection(section, quiz.percent, quiz.maxRemoved, this);
                 viewPanel.add(sectionPanel);
 
             } else if (element instanceof QuizElement) {
                 QuizElement quizElement = (QuizElement) element;
-                viewPanel.add(new GUIQuizElement(quizElement, quiz.percent, quiz.maxRemoved, this));
+                viewPanel.add(
+                        new GUIQuizElement(quizElement, quiz.percent, quiz.maxRemoved, this));
             }
 
         }
@@ -79,57 +81,50 @@ public class QuizScreen extends Screen {
 
     }
 
+    //method to get a full list of terms quizzed by this quiz
     public Map<JTextField, QuizTerm> getQuizzedTerms() {
         return quizzedTerms;
     }
 
+    //method to help count the total number of terms
     public void totalTermsPlusPlus() {
         totalTerms++;
     }
 
+    //method to see if the quiz is turned
     public boolean isTurnedIn() {
         return turnedIn;
     }
 
-    public java.util.List<GUIQuizSection> getGUIQuizSections() {
-        List<GUIQuizSection> list = new ArrayList<>();
-        for (Component c : viewPanel.getComponents()) {
-            if (c instanceof JPanel) {
-                JPanel panel = (JPanel) c;
-                if (panel instanceof GUIQuizSection) {
-                    list.add((GUIQuizSection) panel);
-                }
-            }
-        }
-        return list;
-    }
-
+    //method to get the time that this quiz was taken in
     private int getTime() {
         String[] text = timer.getText().split(":");
         return Integer.parseInt(text[0]) * 60 + Integer.parseInt(text[1]);
     }
 
-    private JButton saveScoresButton() {
-        saveScoresButton = new JButton();
-        saveScoresButton.addActionListener(new ActionListener() {
+
+    private JButton saveScoreButton() {
+        saveScoreButton = new JButton();
+        saveScoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 quizFile.saveScore(score);
-                topPanel.remove(saveScoresButton);
+                topPanel.remove(saveScoreButton);
                 topPanel.revalidate();
                 topPanel.repaint();
                 topPanel.add(StudiamFactory.newStudiamLabel("Saved!", 30), BorderLayout.EAST);
             }
         });
-        saveScoresButton.setBackground(Main.LESS_PURPLE);
-        saveScoresButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        saveScoresButton.setText("Save Score");
-        saveScoresButton.setForeground(Color.BLACK);
-        saveScoresButton.setFocusable(false);
-        saveScoresButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
-        return saveScoresButton;
+        saveScoreButton.setBackground(Main.LESS_PURPLE);
+        saveScoreButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        saveScoreButton.setText("Save Score");
+        saveScoreButton.setForeground(Color.BLACK);
+        saveScoreButton.setFocusable(false);
+        saveScoreButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        return saveScoreButton;
     }
 
+    //method for the timer that times the time it takes to take this timed quiz
     private JLabel timer() {
         timer = StudiamFactory.newStudiamLabel("0:00", 30);
         timer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -156,6 +151,7 @@ public class QuizScreen extends Screen {
         return timer;
     }
 
+    //method for the button to turn in this quiz
     private JButton turnInButton() {
         turnInButton = new JButton();
         turnInButton.addActionListener(new ActionListener() {
@@ -173,6 +169,7 @@ public class QuizScreen extends Screen {
         return turnInButton;
     }
 
+    //method to create the scroll pane to house all the terms in
     private JScrollPane scrollPane(JViewport viewPort) {
         JScrollPane scrollPane = new JScrollPane(viewPort) {
             @Override
@@ -191,7 +188,7 @@ public class QuizScreen extends Screen {
         return scrollPane;
     }
 
-    //Switch to seeing the results of the quiz
+    //method to witch to seeing the results of the quiz
     public void turnInQuiz() {
         List<String> wrong = new ArrayList<>();
         int right = totalTerms;
@@ -212,13 +209,13 @@ public class QuizScreen extends Screen {
         internalTimer.cancel();
         score = new QuizScore(right, totalTerms, getTime(), wrong);
         topPanel.remove(turnInButton);
-        JLabel scoreLabel = StudiamFactory.newStudiamLabel("QuizScore: " + score.toNiceString(), 30,
-                BorderFactory.createLineBorder(Color.BLACK));
+        JLabel scoreLabel = StudiamFactory.newStudiamLabel("QuizScore: " + score.toNiceString(),
+                30, BorderFactory.createLineBorder(Color.BLACK));
         viewPanel.add(scoreLabel, BorderLayout.EAST);
 
         topPanel.revalidate();
         topPanel.repaint();
-        topPanel.add(saveScoresButton(), BorderLayout.EAST);
+        topPanel.add(saveScoreButton(), BorderLayout.EAST);
 
     }
 }

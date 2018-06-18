@@ -29,6 +29,7 @@ public class Main {
         loadSettings();
     }
 
+    //method to access the saved settings and load up the results
     public static void loadSettings() {
         try {
             Scanner settingsScanner = new Scanner(new File("settings"));
@@ -38,7 +39,10 @@ public class Main {
                 switch (data[0]) {
                     case "backgroundColor":
                         String[] values = data[1].split(", ");
-                        backgroundColor = new Color(Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2]), Integer.parseInt(values[3]));
+                        backgroundColor = new Color(Integer.parseInt(values[0]),
+                                Integer.parseInt(values[1]),
+                                Integer.parseInt(values[2]),
+                                Integer.parseInt(values[3]));
                         break;
                     default:
                         break;
@@ -50,6 +54,7 @@ public class Main {
         }
     }
 
+    //method for the main key listener used across super many components throughout the project
     public static KeyListener mainKeyListener() {
         KeyListener keyListener = new KeyListener() {
             @Override
@@ -61,7 +66,8 @@ public class Main {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     if (!(Main.getMainFrame().getCurrentScreen() instanceof MainMenuScreen)) {
                         int hmm = JOptionPane.showConfirmDialog(null,
-                                "Are you sure you want to go back to the main menu?", "Confirm", JOptionPane.YES_NO_OPTION);
+                                "Are you sure you want to go back to the main menu?",
+                                "Confirm", JOptionPane.YES_NO_OPTION);
                         if (hmm == JOptionPane.OK_OPTION) {
                             Main.switchScreen(new MainMenuScreen());
                         }
@@ -80,6 +86,7 @@ public class Main {
         return keyListener;
     }
 
+    //method for the key listener specifically used by a lot of textfields throughout the project
     public static KeyListener textFieldKeyListener() {
         KeyListener keyListener = new KeyListener() {
             @Override
@@ -101,8 +108,10 @@ public class Main {
         return keyListener;
     }
 
+    //method to create a new quiz file
     public static void newFile() {
-        Quiz newQuiz = new Quiz("untitled", "What's this quiz about? How should I know, I'm just a line of code in the newFile method");
+        Quiz newQuiz = new Quiz("untitled", "What's this quiz about? How should I know, " +
+                "I'm just a line of code in the newFile method");
         newQuiz.add(new QuizSection("default section", new QuizElement("[term]")));
 
         JFileChooser jFileChooser = new JFileChooser();
@@ -125,6 +134,7 @@ public class Main {
         }
     }
 
+    //method to choose a quiz file to open
     public static void chooseOpenFile() {
         JFileChooser jFileChooser = new JFileChooser();
         jFileChooser.setFileFilter(new FileNameExtensionFilter("Studiam Quiz Files", "studiam"));
@@ -135,6 +145,7 @@ public class Main {
         }
     }
 
+    //method to add a file to the recent file list
     public static boolean addRecentFile(QuizFile quizFile) {
         try {
             File recentFile = new File(RECENT);
@@ -154,7 +165,7 @@ public class Main {
         return true;
     }
 
-
+    //method to open a specific file
     public static void openFile(File file) {
         QuizFile quizFile = new QuizFile(file);
         QuizEditorScreen quizEditorScreen = new QuizEditorScreen(quizFile, null);
@@ -181,10 +192,13 @@ public class Main {
         mainFrame.setScreenHistoryIndex(mainFrame.getScreenHistoryIndex() + 1);
     }
     */
+
+    //method to get the main frame of the program
     public static MainFrame getMainFrame() {
         return mainFrame;
     }
 
+    //method to switch to a different screen of the program
     public static void switchScreen(Screen newScreen, boolean log) {
         mainFrame.remove(mainFrame.getCurrentScreen());
         mainFrame.setCurrentScreen(newScreen);
@@ -202,10 +216,12 @@ public class Main {
         mainFrame.repaint();
     }
 
+    //dummy method for above
     public static void switchScreen(Screen newScreen) {
         switchScreen(newScreen, true);
     }
 
+    //method to save the file currently being edited
     public static boolean saveFile() {
         if (!(mainFrame.getCurrentScreen() instanceof QuizEditorScreen)) {
             return false;
@@ -216,6 +232,7 @@ public class Main {
     }
 
 
+    //method to save the file currently being edited to a different location
     public static boolean saveFileAs() {
         if (!(mainFrame.getCurrentScreen() instanceof QuizEditorScreen)) {
             return false;

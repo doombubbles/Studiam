@@ -29,6 +29,7 @@ public class GUIQuizSection extends JPanel {
         }
     }
 
+    //self-explanatory
     public void updateVisuals() {
         revalidate();
         repaint();
@@ -42,7 +43,7 @@ public class GUIQuizSection extends JPanel {
         parent.repaint();
     }
 
-    @Override
+    @Override //stupid method to avoid transparent panel painting artifacts
     protected void paintComponent(Graphics g) {
         g.setColor( getBackground() );
         g.fillRect(0, 0, getWidth(), getHeight());

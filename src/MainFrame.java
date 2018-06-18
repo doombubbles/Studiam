@@ -12,15 +12,23 @@ public class MainFrame extends JFrame {
     private int screenHistoryIndex;
 
     public MainFrame() {
-        init();
+        setTitle("Studiam");
+        setSize(800, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        setIconImage(new ToolkitImage(new FileImageSource("img/s3.png")));
+        currentScreen = new MainMenuScreen();
+        add(currentScreen);
+        setJMenuBar(new StudiamMenuBar(this, currentScreen));
         setFocusable(true);
         addKeyListener(Main.mainKeyListener());
     }
 
+    //method to return the current screen of the frame
     public Screen getCurrentScreen() {
         return currentScreen;
     }
-
+    /*
     public void setScreenHistoryIndex(int screenHistoryIndex) {
         this.screenHistoryIndex = screenHistoryIndex;
     }
@@ -32,23 +40,15 @@ public class MainFrame extends JFrame {
     public List<Screen> getScreenHistory() {
         return screenHistory;
     }
+    */
 
+    //method to set the current screen of the frame
     public void setCurrentScreen(Screen currentScreen) {
         this.currentScreen = currentScreen;
     }
 
+    //method to update the menubar of the frame
     public void updateMenubar() {
-        setJMenuBar(new StudiamMenuBar(this, currentScreen));
-    }
-
-    private void init() {
-        setTitle("Studiam");
-        setSize(800, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        setIconImage(new ToolkitImage(new FileImageSource("img/s3.png")));
-        currentScreen = new MainMenuScreen();
-        add(currentScreen);
         setJMenuBar(new StudiamMenuBar(this, currentScreen));
     }
 }

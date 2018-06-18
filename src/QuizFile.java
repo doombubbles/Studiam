@@ -16,6 +16,7 @@ public class QuizFile extends File {
         super(file.getPath() + (file.getPath().endsWith(".studiam") ? "" : ".studiam"));
     }
 
+    //method to save a new score to this quiz file
     public void saveScore(QuizScore score) {
         PrintStream output;
         try {
@@ -27,6 +28,7 @@ public class QuizFile extends File {
         output.println("quizScore = " + score.toString());
     }
 
+    //method to read the quiz file and turn it into a quiz class
     public Quiz createQuiz() {
         Scanner scanner;
         try {

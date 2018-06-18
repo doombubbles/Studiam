@@ -24,14 +24,17 @@ public class Quiz extends ArrayList<IQuizEntry> {
         scores = new ArrayList<>();
     }
 
+    //method to get the scores of this quiz
     public List<QuizScore> getScores() {
         return scores;
     }
 
+    //method to add a past score to this quiz
     public void addScore(QuizScore score) {
         scores.add(score);
     }
 
+    //method to get ALL the elements of this quiz
     public List<QuizElement> getAllElements() {
         List<QuizElement> list = new ArrayList<>();
         for (IQuizEntry entry : this) {
@@ -40,7 +43,7 @@ public class Quiz extends ArrayList<IQuizEntry> {
         return list;
     }
 
-    @Override
+    @Override //method to see if this quiz equals another object (quiz)
     public boolean equals(Object o) {
         if (o instanceof Quiz) {
             Quiz otherQuiz = (Quiz) o;
@@ -53,7 +56,9 @@ public class Quiz extends ArrayList<IQuizEntry> {
                 }
             }
 
-            return name.equals(otherQuiz.name) && description.equals(otherQuiz.description) && percent == otherQuiz.percent;
+            return name.equals(otherQuiz.name)
+                    && description.equals(otherQuiz.description)
+                    && percent == otherQuiz.percent;
         }
         return super.equals(o);
     }

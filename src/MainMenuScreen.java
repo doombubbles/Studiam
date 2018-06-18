@@ -32,7 +32,7 @@ public class MainMenuScreen extends Screen {
         }
     }
 
-
+    //method for the button to create a new quiz file
     public JButton newButton() {
         JButton newButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
@@ -45,6 +45,7 @@ public class MainMenuScreen extends Screen {
         return newButton;
     }
 
+    //method for the button to open a quiz file
     public JButton openButton() {
         JButton openButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
@@ -57,6 +58,7 @@ public class MainMenuScreen extends Screen {
         return openButton;
     }
 
+    //method for the button to import a quiz file
     public JButton importButton() {
         JButton importButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
@@ -69,6 +71,7 @@ public class MainMenuScreen extends Screen {
         return importButton;
     }
 
+    //method for the button to switch to the settings screen
     public JButton settingsButton() {
         JButton newButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
@@ -81,12 +84,13 @@ public class MainMenuScreen extends Screen {
         return newButton;
     }
 
+    //method for the panel of recent files at the bottom of the screen
     public JPanel recentFiles() {
         JPanel recentFiles = StudiamFactory.newTransparentPanel();
         recentFiles.setLayout(new BoxLayout(recentFiles, BoxLayout.Y_AXIS));
         recentFiles.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(Color.BLACK), "Recent Files", TitledBorder.TOP, TitledBorder.CENTER,
-                new Font("Times New Roman", Font.BOLD, 25), Color.BLACK));
+                BorderFactory.createLineBorder(Color.BLACK), "Recent Files", TitledBorder.TOP,
+                TitledBorder.CENTER, new Font("Times New Roman", Font.BOLD, 25), Color.BLACK));
 
         Scanner input;
         try {

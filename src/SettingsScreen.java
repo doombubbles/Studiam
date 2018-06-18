@@ -26,6 +26,7 @@ public class SettingsScreen extends Screen {
 
     }
 
+    //method to get an outputstream for the settings
     public PrintStream outputStream() {
         try {
             PrintStream outputStream = new PrintStream(new FileOutputStream(settings, false));
@@ -36,6 +37,7 @@ public class SettingsScreen extends Screen {
         }
     }
 
+    //method for the button to go back to the main menu
     private JButton backButton() {
         JButton backButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
@@ -48,14 +50,17 @@ public class SettingsScreen extends Screen {
         return backButton;
     }
 
+    //method for the button to change the background color
     private JButton colorButton() {
         JButton colorButton = StudiamFactory.newStudiamButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Color chosenColor = JColorChooser.showDialog(Main.getMainFrame(), "Studiam", Main.CLEAR);
+                Color chosenColor = JColorChooser.showDialog(Main.getMainFrame(), "Studiam",
+                        Main.CLEAR);
                 Main.backgroundColor = chosenColor;
                 outputStream().println("backgroundColor = " + chosenColor.getRed() + ", "
-                        + chosenColor.getGreen()  + ", " + chosenColor.getBlue() + ", " + chosenColor.getAlpha());
+                        + chosenColor.getGreen()  + ", " + chosenColor.getBlue() + ", " +
+                        chosenColor.getAlpha());
                 Main.getMainFrame().repaint();
             }
         });

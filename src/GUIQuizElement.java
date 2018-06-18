@@ -16,7 +16,8 @@ public class GUIQuizElement extends JPanel {
         int removed = 0;
         for (QuizTerm term : element) {
             if ((Math.random() * 100) < percent && removed < maxRemoved) {
-                JTextField field = StudiamFactory.newStudiamTextField("", 15, BorderFactory.createLineBorder(Color.BLACK));
+                JTextField field = StudiamFactory.newStudiamTextField("", 15,
+                        BorderFactory.createLineBorder(Color.BLACK));
                 field.addKeyListener(Main.mainKeyListener());
                 field.setPreferredSize(new Dimension(term.toString().length() * 15, 20));
                 add(field);
@@ -24,7 +25,8 @@ public class GUIQuizElement extends JPanel {
                 screen.totalTermsPlusPlus();
                 removed++;
             } else {
-                JLabel label = StudiamFactory.newStudiamLabel(term.toString(), 15, BorderFactory.createLineBorder(Color.BLACK));
+                JLabel label = StudiamFactory.newStudiamLabel(term.toString(), 15,
+                        BorderFactory.createLineBorder(Color.BLACK));
                 label.addKeyListener(Main.mainKeyListener());
                 add(label);
             }
@@ -37,7 +39,7 @@ public class GUIQuizElement extends JPanel {
     }
 
 
-    @Override //method to stop dumb visual glitch
+    @Override //stupid method to avoid transparent panel painting artifacts
     protected void paintComponent(Graphics g) {
         g.setColor( getBackground() );
         g.fillRect(0, 0, getWidth(), getHeight());

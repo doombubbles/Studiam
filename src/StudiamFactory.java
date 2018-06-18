@@ -7,6 +7,7 @@ import java.text.NumberFormat;
 
 public class StudiamFactory {
 
+    //method to make a new transparent panel without dumb painting artifacts
     public static JPanel newTransparentPanel(LayoutManager layoutManager) {
         JPanel jPanel = new JPanel() {
             protected void paintComponent(Graphics g)
@@ -25,24 +26,20 @@ public class StudiamFactory {
         return jPanel;
     }
 
+    //dummy method for above
     public static JPanel newTransparentPanel() {
         return newTransparentPanel(null);
     }
 
+    //dummy method for below
     public static JTextField newStudiamTextField(String s, int fontSize) {
         return newStudiamTextField(s, fontSize, null);
     }
 
+    //method to create a new text field with standard Studiam formatting
     public static JTextField newStudiamTextField(String s, int fontSize, Border border) {
-        return newStudiamTextField(s, fontSize, border, null);
-    }
-
-    public static JTextField newStudiamTextField(String s, int fontSize, Border border, NumberFormat format) {
         JTextField jTextField;
-        if (format != null) {
-            jTextField = new JFormattedTextField(format);
-            jTextField.setText(s);
-        } else jTextField = new JTextField(s);
+        jTextField = new JTextField(s);
 
         jTextField.setFont(new Font("Times New Roman", Font.BOLD, fontSize));
         jTextField.setSelectionColor(Main.LESS_PURPLE);
@@ -70,10 +67,12 @@ public class StudiamFactory {
         return jTextField;
     }
 
+    //dummu method for below
     public static JLabel newStudiamLabel(String s, int fontSize) {
         return newStudiamLabel(s, fontSize, null);
     }
 
+    //method to create a new label with standard Studiam formatting
     public static JLabel newStudiamLabel(String s, int fontSize, Border border) {
         JLabel label = new JLabel();
         label.setText(s);
@@ -86,6 +85,7 @@ public class StudiamFactory {
         return label;
     }
 
+    //method to create a new button with standard Studiam formatting
     public static JButton newStudiamButton(AbstractAction action) {
         JButton jButton = new JButton();
         if (action != null) {

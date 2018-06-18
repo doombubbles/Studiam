@@ -20,9 +20,9 @@ public class QuizElement extends ArrayList<QuizTerm> implements IQuizEntry {
     }
 
     public QuizElement() {
-
     }
 
+    //method to convert this QuizElement back into a dataString to be saved
     public String convertBack() {
         String string = "";
         for (QuizTerm quizTerm : this) {
@@ -35,17 +35,17 @@ public class QuizElement extends ArrayList<QuizTerm> implements IQuizEntry {
         return string.substring(0, string.length() - 2);
     }
 
-    @Override
+    @Override //method to get the dataString
     public String toString() {
         return dataString;
     }
 
-    @Override
+    @Override //method to get all the quiz elements that this quiz element is
     public List<QuizElement> getAll() {
         return Arrays.asList(this);
     }
 
-    @Override
+    @Override //method to see if this quiz element equals another object (quiz element)
     public boolean equals(Object o) {
         if (o instanceof QuizElement) {
             QuizElement quizElement = (QuizElement) o;

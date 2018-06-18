@@ -39,10 +39,11 @@ public class QuizScore {
     }
 
     public String toNiceString() {
-        return correct + "/" + total + " - " + (Math.round(10000 * correct / total) / 100.0) + "%" + " in " + time + " seconds.";
+        return correct + "/" + total + " - " +
+                (Math.round(10000 * correct / total) / 100.0) + "%" + " in " + time + " seconds.";
     }
 
-    @Override
+    @Override //method to convert this score into a string for saving
     public String toString() {
         String s = correct + "," + total + "," + time;
         for (String term : wrong) {

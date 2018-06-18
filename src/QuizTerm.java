@@ -17,24 +17,28 @@ public class QuizTerm {
         }
     }
 
+    //method to add a potential alternate to this term
     public void addAlternate(String string) {
         alternates.add(string);
     }
 
+    //method to get the whole list of alternates for this term
     public List<String> getAlternates() {
         return alternates;
     }
 
-    @Override
+    @Override //method to get the main term as a string
     public String toString() {
         return term;
     }
 
+    //method to check if a string is correct for this term
     public boolean matches(String s) {
-        return term.equalsIgnoreCase(s) || alternates.stream().anyMatch(s1 -> s1.toLowerCase().equals(s.toLowerCase()));
+        return term.equalsIgnoreCase(s) || alternates.stream()
+                .anyMatch(s1 -> s1.toLowerCase().equals(s.toLowerCase()));
     }
 
-    @Override
+    @Override //method to see if this quiz term equals an object (quiz term)
     public boolean equals(Object obj) {
         if (obj instanceof QuizTerm) {
             QuizTerm quizTerm = (QuizTerm) obj;

@@ -116,7 +116,7 @@ public class GUIEditorQuizElement extends JPanel {
         return element;
     }
 
-    @Override //method to stop dumb visual glitch
+    @Override //stupid method to avoid transparent panel painting artifacts
     protected void paintComponent(Graphics g) {
         g.setColor( getBackground() );
         g.fillRect(0, 0, getWidth(), getHeight());

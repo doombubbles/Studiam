@@ -41,10 +41,12 @@ public class GUIEditorQuizSection extends JPanel {
         add(newButton());
     }
 
+    //method to return the name of this section
     public String getSectionName() {
         return sectionNameArea.getText();
     }
 
+    //method for the button to add a new term to this element
     private JButton newButton() {
         JButton newButton = new JButton();
         newButton.setText("New");
@@ -62,6 +64,7 @@ public class GUIEditorQuizSection extends JPanel {
         return newButton;
     }
 
+    //method for the button to delete this quiz element
     private JButton deleteButton() {
         JButton deleteButton = new JButton();
         deleteButton.setAction(new AbstractAction() {
@@ -80,6 +83,7 @@ public class GUIEditorQuizSection extends JPanel {
         return deleteButton;
     }
 
+    //self-explanatory
     public void updateVisuals() {
         revalidate();
         repaint();
@@ -113,7 +117,8 @@ public class GUIEditorQuizSection extends JPanel {
         return section;
     }
 
-    @Override
+
+    @Override //stupid method to avoid transparent panel painting artifacts
     protected void paintComponent(Graphics g) {
         g.setColor( getBackground() );
         g.fillRect(0, 0, getWidth(), getHeight());

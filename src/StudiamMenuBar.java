@@ -23,6 +23,7 @@ public class StudiamMenuBar extends JMenuBar{
         add(fileMenu);
     }
 
+    //method for the menu item to create a new file
     private static JMenuItem nnew() {
         JMenuItem open = new JMenuItem();
         open.setAction(new AbstractAction() {
@@ -36,6 +37,7 @@ public class StudiamMenuBar extends JMenuBar{
         return open;
     }
 
+    //method for the menu item to open a file
     private static JMenuItem open() {
         JMenuItem open = new JMenuItem();
         open.setAction(new AbstractAction() {
@@ -49,6 +51,7 @@ public class StudiamMenuBar extends JMenuBar{
         return open;
     }
 
+    //method for the menu item to save a file
     private static JMenuItem save() {
         JMenuItem save = new JMenuItem();
         save.setAction(new AbstractAction() {
@@ -65,6 +68,7 @@ public class StudiamMenuBar extends JMenuBar{
         return save;
     }
 
+    //method for the menu item to save a file as
     private static JMenuItem saveAs() {
         JMenuItem save = new JMenuItem();
         save.setAction(new AbstractAction() {

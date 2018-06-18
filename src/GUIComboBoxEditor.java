@@ -16,12 +16,14 @@ public class GUIComboBoxEditor implements ComboBoxEditor {
         textArea.setBorder(BorderFactory.createLoweredBevelBorder());
     }
 
-    @Override
+
+    @Override //method to return the editor component
     public Component getEditorComponent() {
         return textArea;
     }
 
-    @Override
+
+    @Override //method to set the displayed item of the combobox
     public void setItem(Object anObject) {
         if (anObject instanceof String) {
             textArea.setText((String) anObject);
@@ -29,21 +31,25 @@ public class GUIComboBoxEditor implements ComboBoxEditor {
 
     }
 
-    @Override
+
+    @Override //method to return the item being displayed by the combobox
     public Object getItem() {
         return textArea.getText();
     }
 
-    @Override
+
+    @Override //method to select all text
     public void selectAll() {
         textArea.selectAll();
     }
 
-    @Override
+
+    @Override //lol nope
     public void addActionListener(ActionListener l) {
     }
 
-    @Override
+
+    @Override //lol nope
     public void removeActionListener(ActionListener l) {
     }
 }
