@@ -34,6 +34,7 @@ public class QuizEditorScreen extends Screen {
     private JTextField percent;
     private JTextField maxBye;
     private JPanel viewPanel;
+    private QuizScoreGraph quizScoreGraph;
 
     public boolean saved = true;
 
@@ -103,22 +104,22 @@ public class QuizEditorScreen extends Screen {
         viewPanel.add(Box.createVerticalStrut(50));
 
 
-
-
-
-        viewPanel.add(StudiamFactory.newStudiamLabel("Score History:", 42));
-        for (QuizScore score : baseQuiz.getScores()) {
-            JPanel scorePanel = StudiamFactory.newTransparentPanel();
-            scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.X_AXIS));
-            scorePanel.setAlignmentX(LEFT_ALIGNMENT);
-            scorePanel.setMaximumSize(new Dimension(350, 1000));
-            JLabel scoreLabel = StudiamFactory.newStudiamLabel(score.toNiceString(), 20);
-            scorePanel.add(scoreLabel);
-            scorePanel.add(Box.createHorizontalStrut(5));
-            scorePanel.add(deleteScoreButton(scorePanel, score));
-            viewPanel.add(scorePanel);
-        }
-        viewPanel.add(new QuizScoreGraph(baseQuiz.getScores()));
+        if (!baseQuiz.getScores().isEmpty()) {
+            viewPanel.add(StudiamFactory.newStudiamLabel("Score History:", 42));
+            for (QuizScore score : baseQuiz.getScores()) {
+                JPanel scorePanel = StudiamFactory.newTransparentPanel();
+                scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.X_AXIS));
+                scorePanel.setAlignmentX(LEFT_ALIGNMENT);
+                scorePanel.setMaximumSize(new Dimension(350, 1000));
+                JLabel scoreLabel = StudiamFactory.newStudiamLabel(score.toNiceString(), 20);
+                scorePanel.add(scoreLabel);
+                scorePanel.add(Box.createHorizontalStrut(5));
+                scorePanel.add(deleteScoreButton(scorePanel, score));
+                viewPanel.add(scorePanel);
+            }
+            quizScoreGraph = new QuizScoreGraph(baseQuiz.getScores());
+            viewPanel.add(quizScoreGraph);
+        } else quizScoreGraph = null;
 
         viewPanel.add(Box.createVerticalStrut(500));
         viewport.add(viewPanel);
@@ -161,6 +162,8 @@ public class QuizEditorScreen extends Screen {
                 baseQuiz.getScores().remove(score);
                 revalidate();
                 repaint();
+                quizScoreGraph.setScores(baseQuiz.getScores());
+                quizScoreGraph.update();
             }
         });
         deleteScoreButton.setText("X");
