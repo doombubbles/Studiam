@@ -37,7 +37,9 @@ public class Main {
         loadSettings();
     }
 
-    //method to access the saved settings and load up the results
+    /**
+     * Accesses the saved settings and load up the results
+     */
     public static void loadSettings() {
         try {
             Scanner settingsScanner = new Scanner(new File("settings"));
@@ -62,7 +64,10 @@ public class Main {
         }
     }
 
-    //method for the main key listener used across super many components throughout the project
+    /**
+     * Returns the main key listener used across super many components throughout the project
+     * @return the main key listener
+     */
     public static KeyListener mainKeyListener() {
         KeyListener keyListener = new KeyListener() {
             @Override
@@ -94,7 +99,10 @@ public class Main {
         return keyListener;
     }
 
-    //method for the key listener specifically used by a lot of textfields throughout the project
+    /**
+     * Returns the key listener specifically used by a lot of textfields throughout the project
+     * @return the key listener
+     */
     public static KeyListener textFieldKeyListener() {
         KeyListener keyListener = new KeyListener() {
             @Override
@@ -116,7 +124,9 @@ public class Main {
         return keyListener;
     }
 
-    //method to create a new quiz file
+    /**
+     * Creates a new quiz file
+     */
     public static void newFile() {
         Quiz newQuiz = new Quiz("untitled", "What's this quiz about? How should I know, " +
                 "I'm just a line of code in the newFile method");
@@ -142,7 +152,9 @@ public class Main {
         }
     }
 
-    //method to choose a quiz file to open
+    /**
+     * Chooses a quiz file to open
+     */
     public static void chooseOpenFile() {
         JFileChooser jFileChooser = new JFileChooser();
         jFileChooser.setFileFilter(new FileNameExtensionFilter("Studiam Quiz Files", "studiam"));
@@ -153,7 +165,11 @@ public class Main {
         }
     }
 
-    //method to add a file to the recent file list
+    /**
+     * Adds a file to the recent file list
+     * @param quizFile the QuizFile to add
+     * @return whether the file was sucessfully added
+     */
     public static boolean addRecentFile(QuizFile quizFile) {
         try {
             File recentFile = new File(RECENT);
@@ -173,7 +189,10 @@ public class Main {
         return true;
     }
 
-    //method to open a specific file
+    /**
+     * Opens a specific file.
+     * @param file the specific file to be opened
+     */
     public static void openFile(File file) {
         QuizFile quizFile = new QuizFile(file);
         QuizEditorScreen quizEditorScreen = new QuizEditorScreen(quizFile, null);
@@ -201,13 +220,15 @@ public class Main {
     }
     */
 
-    //method to get the main frame of the program
     public static MainFrame getMainFrame() {
         return mainFrame;
     }
 
-    //method to switch to a different screen of the program
-    public static void switchScreen(Screen newScreen, boolean log) {
+    /**
+     * Switches the screen to a different screen of the program
+     * @param newScreen the screen to switch to
+     */
+    public static void switchScreen(Screen newScreen, @Deprecated boolean log) {
         mainFrame.remove(mainFrame.getCurrentScreen());
         mainFrame.setCurrentScreen(newScreen);
         /*
@@ -224,12 +245,14 @@ public class Main {
         mainFrame.repaint();
     }
 
-    //dummy method for above
     public static void switchScreen(Screen newScreen) {
         switchScreen(newScreen, true);
     }
 
-    //method to save the file currently being edited
+    /**
+     * Save the file currently being edited
+     * @return whether the file was successfully saved
+     */
     public static boolean saveFile() {
         if (!(mainFrame.getCurrentScreen() instanceof QuizEditorScreen)) {
             return false;
@@ -240,7 +263,10 @@ public class Main {
     }
 
 
-    //method to save the file currently being edited to a different location
+    /**
+     * Save the file currently being edited to a different location
+     * @return whether the file was successfully saved
+     */
     public static boolean saveFileAs() {
         if (!(mainFrame.getCurrentScreen() instanceof QuizEditorScreen)) {
             return false;

@@ -321,7 +321,7 @@ public class QuizEditorScreen extends Screen {
         return true;
     }
 
-    //dummy method for next method
+
     public boolean saveFile() {
         return saveFile(quizFile);
     }
