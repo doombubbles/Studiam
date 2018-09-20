@@ -91,9 +91,9 @@ public class GUIEditorQuizElement extends JPanel {
 
 
 
-        int total = 110;
+        int total = 100;
         for (GUIEditorQuizTerm term : getGUIQuizTerms()) {
-            total += Math.max(70, term.getSize().width);
+            total += Math.max(70, term.getSize().width) + 10;
         }
         setPreferredSize(new Dimension(total, 40));
         setMaximumSize(new Dimension(total, 40));
