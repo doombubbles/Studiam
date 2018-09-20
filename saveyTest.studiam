@@ -1,0 +1,11 @@
+quizName = Hi Ms Myers
+quizDesc = This is the description... or is it?
+quizPercent = 50
+quizMaxRemoved = 2
+quizSection = Nouns
+quizElement = lol | rofl, hmmlmao, roflmao, haha
+quizSection = name
+quizElement = [term], [term]
+quizElement = [term]
+quizSection = Test New Section
+quizElement = [term]
