@@ -4,4 +4,4 @@
 *.iml
 *.xml
 out/*
-recent
+/recent
